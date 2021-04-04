@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="cardview_padding">9dp</dimen>
+    <dimen name="question_text_size">22dp</dimen>
+    <dimen name="question_text_bottom_margin">8dp</dimen>
+    <dimen name="cardview_margin_top">9dp</dimen>
+</resources>

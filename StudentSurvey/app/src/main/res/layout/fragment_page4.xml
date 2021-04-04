@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.Page4Fragment"
+    android:fillViewport="true"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="9dp"
+        android:background="@color/cardview_background"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/numOfDropSemesterCard"
+            app:cardCornerRadius="9dp"
+            android:elevation="22dp"
+            android:background="@color/cardview_background"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/cardview_padding"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How many semesters did you drop? *"
+                    android:textSize="@dimen/question_text_size"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/question_text_bottom_margin"
+                    />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/numOfDropSemesterOutLineedTextFieldLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_num_drop_semester"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:errorEnabled="true"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/numOfDropSemesterEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/numOfDropSemesterCard"
+            android:id="@+id/dropReasonCard"
+            app:cardCornerRadius="9dp"
+            android:elevation="22dp"
+            android:layout_marginTop="9dp"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/cardview_padding"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="If you have dropped any semester than what is the reason behind it?"
+                    android:textSize="@dimen/question_text_size"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/question_text_bottom_margin"
+                    />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dropReasonTextLayout"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                    app:errorEnabled="true"
+                    <AutoCompleteTextView
+                        android:text="Select"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:id="@+id/dropReasonDropDown"
+
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/dropReasonCard"
+            android:id="@+id/dueAmountCard"
+            app:cardCornerRadius="9dp"
+            android:elevation="22dp"
+            android:background="@color/cardview_background"
+            android:layout_marginTop="@dimen/cardview_margin_top"
+            >grpStudyCard
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/cardview_padding"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Due Amount of Tuition Fee (BDT)  *"
+                    android:textSize="@dimen/question_text_size"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/question_text_bottom_margin"
+                    />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dueAmountOutlinedTextFieldLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_due_amount"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:errorEnabled="true"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dueAmountEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
