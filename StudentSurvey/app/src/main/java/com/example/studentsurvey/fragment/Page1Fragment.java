@@ -27,6 +27,8 @@ import com.example.studentsurvey.databinding.FragmentPage1Binding;
 import com.example.studentsurvey.model.StudentDetails;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Arrays;
+
 
 public class Page1Fragment extends Fragment {
     FragmentPage1Binding mFragmentPage1Binding;
@@ -105,6 +107,7 @@ public class Page1Fragment extends Fragment {
     }
     private void placeOfBirthDropDownOnClick(){
         mFragmentPage1Binding.placeOfBirthDropDown.setOnClickListener(view -> {
+
             showErrorInTextInputLayout(mFragmentPage1Binding.placeOfBirthTextLayout,null);
             districtAdapter.getFilter().filter(null);
         });
@@ -285,6 +288,8 @@ public class Page1Fragment extends Fragment {
 
     }
     private void initDistrictDropDown(){
+        String[] dis = getResources().getStringArray(R.array.bd_districts);
+        mMainViewModel.districtArrayList = Arrays.asList(dis);
         districtAdapter = new ArrayAdapter<String>(this.getContext(), R.layout.drop_down_item,mMainViewModel.districtArrayList);
         mFragmentPage1Binding.placeOfBirthDropDown.setAdapter(districtAdapter);
 

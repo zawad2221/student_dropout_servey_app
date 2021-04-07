@@ -274,13 +274,19 @@ public class MainFragment extends Fragment {
     }
     private void showResultAlertDialog(String resultMessage){
         alertDialog = new AlertDialog.Builder(getContext())
-                .setTitle(resultMessage)
+                .setTitle(resultMessage+": Try again.")
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if(resultMessage.equals("Failed")){
+                            alertDialog.dismiss();
+                        }
+                        else {
+                            restartActivity();
+                        }
                         //restartActivity();
-                        restartActivity();
+
                         //alertDialog.dismiss();
                     }
                 })

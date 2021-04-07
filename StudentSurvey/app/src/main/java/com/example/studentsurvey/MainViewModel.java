@@ -54,12 +54,36 @@ public class MainViewModel extends ViewModel {
 
 
     public List<String> nationalityArrayList = Arrays.asList(
-            new String[]{"Bangladesh", "India","Somalia", "Nigeria","Nepal", "China"}
+            new String[]{"Bangladesh","North Korea", "India","Somalia", "Nigeria","Nepal", "China","South Korea","Malaysia"}
             );
-    public List<String> districtArrayList = Arrays.asList(
-            "Dhaka", "Pabna","Chittagong", "Barisal","Bogra", "Sylhet");
+//    public List<String> districtArrayList = Arrays.asList(
+//            "Dhaka", "Pabna","Chittagong", "Barisal","Bogra", "Sylhet");
+    public List<String> districtArrayList;
     public List<String> instituteNameArrayList = Arrays.asList(
-            "Daffodil International University", "Dhaka University","North South University", "Brac University","City University", "Jahangirnagar University");
+            "Daffodil International University",
+            "Dhaka University",
+            "North South University",
+            "Brac University",
+            "City University",
+            "Jahangirnagar University",
+            "Bangladesh University of Engineering and Technology",
+            "Khulna University of Engineering and Technology",
+            "Chittagong University of Engineering and Technology",
+            "Jagannath University",
+            "Bangladesh University of Business and Technology (BUBT)",
+            "Green University of Bangladesh",
+            "Mawlana Bhashani Science and Technology University(MBSTU)",
+            "Hajee Mohammad Danesh Science & Technology University",
+            "American International University-Bangladesh (AIUB)",
+            "United International University",
+            "Bangabandhu Sheikh Mujibur Rahman Science & Technology University",
+            "University of Barisal",
+            "University of Liberal Arts Bangladesh",
+            "Dhaka International University: DIU",
+            "Barisal University",
+            "European University of Bangladesh",
+            "Ranada Prasad Saha University"
+            );
     public List<String> departmentNameArrayList = Arrays.asList(
             "Computer Science and Engineering",
             "Software Engineering",
