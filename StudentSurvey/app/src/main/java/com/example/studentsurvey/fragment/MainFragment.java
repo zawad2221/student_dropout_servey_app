@@ -33,9 +33,13 @@ import com.example.studentsurvey.model.StudentDetails;
 public class MainFragment extends Fragment {
     FragmentMainBinding mFragmentMainBinding;
     MainViewModel mMainViewModel;
-    NavController navController;
+    //NavController navController;
     ProgressDialog progressDialog;
     AlertDialog alertDialog;
+    Page1Fragment page1Fragment;
+    Page2Fragment page2Fragment;
+    Page3Fragment page3Fragment;
+    Page4Fragment page4Fragment;
 
 
     public MainFragment() {
@@ -56,6 +60,9 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mFragmentMainBinding = FragmentMainBinding.inflate(inflater,container,false);
+        page1Fragment = new Page1Fragment();
+
+        showFragment(page1Fragment);
         return mFragmentMainBinding.getRoot();
     }
 
@@ -65,7 +72,7 @@ public class MainFragment extends Fragment {
         Log.d(getString(R.string.DEBUGING_TAG),"view :"+view);
         initViewModel();
 
-        initNavController(view);
+        //initNavController(view);
         nextButtonOnClick();
         previousOnClick();
         submitButtonOnClick();
@@ -81,8 +88,8 @@ public class MainFragment extends Fragment {
                 dismissProgressDialog();
                 if(studentDetails.getResult()!=-1){
 
-                    showResultAlertDialog("Result: "+studentDetails.getResult());
-                    restartActivity();
+                    showResultAlertDialog("Result: "+(studentDetails.getResult()==1?"Yes":"No"));
+
                 }
                 else {
                     showResultAlertDialog("Failed");
@@ -94,38 +101,43 @@ public class MainFragment extends Fragment {
     }
 
     private void selectedFragmentObserver(){
-        mMainViewModel.currentFragment.observe(getActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
-            @Override
-            public void onChanged(MainViewModel.FRAGMENT_TAGS fragment_tags) {
-                if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT2){
-                    Log.d(getString(R.string.DEBUGING_TAG),"selected fragment on main: "+mMainViewModel.currentFragment.getValue().toString());
-                    setButtonVisibility(mFragmentMainBinding.previousButton,View.VISIBLE);
-                }
-                else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT4){
-                    setButtonVisibility(mFragmentMainBinding.nextButton,View.GONE);
-                    setButtonVisibility(mFragmentMainBinding.submitButton,View.VISIBLE);
-                }
-                else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT_SUBMIT){
-                    showProgressDialog("loading......");
-                    Log.d(getString(R.string.DEBUGING_TAG),"all student info: "+mMainViewModel.studentDetails.toString());
-                    new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            dismissProgressDialog();
-                        }
-                        catch (Exception e){
-
-                        }
-
-
-                    }
-                }, 60000);
-                    mMainViewModel.saveInfo(getContext(),mMainViewModel.studentDetails);
-                    resultObserver();
-                }
-            }
-        });
+//        mMainViewModel.currentFragment.observe(getActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
+//            @Override
+//            public void onChanged(MainViewModel.FRAGMENT_TAGS fragment_tags) {
+//                if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT2){
+//                    Log.d(getString(R.string.DEBUGING_TAG),"selected fragment on main: "+mMainViewModel.currentFragment.getValue().toString());
+//                    setButtonVisibility(mFragmentMainBinding.previousButton,View.VISIBLE);
+//                    showFragment(new Page2Fragment());
+//                }
+//                else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT3){
+//                    showFragment(new Page3Fragment());
+//                }
+//                else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT4){
+//                    setButtonVisibility(mFragmentMainBinding.nextButton,View.GONE);
+//                    setButtonVisibility(mFragmentMainBinding.submitButton,View.VISIBLE);
+//                    showFragment(new Page4Fragment());
+//                }
+//                else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT_SUBMIT){
+//                    showProgressDialog("loading......");
+//                    Log.d(getString(R.string.DEBUGING_TAG),"all student info: "+mMainViewModel.studentDetails.toString());
+//                    new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            dismissProgressDialog();
+//                        }
+//                        catch (Exception e){
+//
+//                        }
+//
+//
+//                    }
+//                }, 60000);
+//                    mMainViewModel.saveInfo(getContext(),mMainViewModel.studentDetails);
+//                    resultObserver();
+//                }
+//            }
+//        });
     }
 //    private void nextButtonObserver(){
 //        mMainViewModel.nextButtonClick.observe(getActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
@@ -151,21 +163,38 @@ public class MainFragment extends Fragment {
 
                     //setButtonVisibility(mFragmentMainBinding.previousButton,View.VISIBLE);
 //                    showFragment(R.id.action_page1Fragment_to_page2Fragment);
-                    Log.d(getString(R.string.DEBUGING_TAG),"current in main nextclick frag by nav: "+navController.getCurrentDestination());
+                    //Log.d(getString(R.string.DEBUGING_TAG),"current in main nextclick frag by nav: "+navController.getCurrentDestination());
                     mMainViewModel.nextButtonClick.setValue(MainViewModel.FRAGMENT_TAGS.FRAGMENT1);
+                    boolean check = page1Fragment.checkInputAndShowError();
+                    if(check){
+                        setButtonVisibility(mFragmentMainBinding.previousButton,View.VISIBLE);
+                        if(page2Fragment==null)page2Fragment = new Page2Fragment();
+                        showFragment(page2Fragment);
+                    }
                 }
                 else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT2){
 //                    setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS.FRAGMENT3);
 //                    showFragment(R.id.action_page2Fragment_to_page3Fragment);
 
                     mMainViewModel.nextButtonClick.setValue(MainViewModel.FRAGMENT_TAGS.FRAGMENT2);
+                    boolean check = page2Fragment.checkInputAndShowError();
+                    if (check){
+                        if(page3Fragment==null)page3Fragment = new Page3Fragment();
+                        showFragment(page3Fragment);
+                    }
                 }
                 else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT3){
                     //setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS.FRAGMENT4);
 //                    setButtonVisibility(mFragmentMainBinding.nextButton,View.GONE);
 //                    setButtonVisibility(mFragmentMainBinding.submitButton,View.VISIBLE);
                     //showFragment(R.id.action_page3Fragment_to_page4Fragment);
-                    mMainViewModel.nextButtonClick.setValue(MainViewModel.FRAGMENT_TAGS.FRAGMENT3);
+                    //mMainViewModel.nextButtonClick.setValue(MainViewModel.FRAGMENT_TAGS.FRAGMENT3);
+                    if(page3Fragment.checkInputAndShowError()){
+                        setButtonVisibility(mFragmentMainBinding.nextButton,View.GONE);
+                        setButtonVisibility(mFragmentMainBinding.submitButton,View.VISIBLE);
+                        if(page4Fragment==null)page4Fragment = new Page4Fragment();
+                        showFragment(page4Fragment);
+                    }
                 }
 
             }
@@ -187,21 +216,33 @@ public class MainFragment extends Fragment {
         mFragmentMainBinding.submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        dismissProgressDialog();
-//                        showResultAlertDialog("OK");
-//                    }
-//                }, 2000);
                 mMainViewModel.nextButtonClick.setValue(MainViewModel.FRAGMENT_TAGS.FRAGMENT_SUBMIT);
+                if(page4Fragment.checkInputAndShowError()){
+                    showProgressDialog("loading......");
+                    Log.d(getString(R.string.DEBUGING_TAG),"all student info: "+mMainViewModel.studentDetails.toString());
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                dismissProgressDialog();
+                            }
+                            catch (Exception e){
+
+                            }
+
+
+                        }
+                    }, 60000);
+                    mMainViewModel.saveInfo(getContext(),mMainViewModel.studentDetails);
+                    resultObserver();
+                }
+
             }
         });
     }
-    private void showFragment(@IdRes int actionId){
-        navController.navigate(actionId);
-    }
+//    private void showFragment(@IdRes int actionId){
+//        navController.navigate(actionId);
+//    }
     private void initViewModel(){
         mMainViewModel = new ViewModelProvider(requireActivity())
                 .get(MainViewModel.class);
@@ -210,17 +251,17 @@ public class MainFragment extends Fragment {
         button.setVisibility(visibility);
     }
 
-    private void initNavController(View view){
-        try {
-//            navController = ((NavHostFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container))
-//                    .getNavController();
-            navController = Navigation.findNavController(getActivity(), R.id.fragment_container);
-        }
-        catch (Exception e){
-            Log.d(getString(R.string.DEBUGING_TAG),"exception: "+e.getMessage());
-        }
-
-    }
+//    private void initNavController(View view){
+//        try {
+////            navController = ((NavHostFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container))
+////                    .getNavController();
+//            navController = Navigation.findNavController(getActivity(), R.id.fragment_container);
+//        }
+//        catch (Exception e){
+//            Log.d(getString(R.string.DEBUGING_TAG),"exception: "+e.getMessage());
+//        }
+//
+//    }
     private void showProgressDialog(String message){
         progressDialog = new ProgressDialog(getContext(),android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
         progressDialog.setCancelable(false);
@@ -239,7 +280,8 @@ public class MainFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //restartActivity();
-                        alertDialog.dismiss();
+                        restartActivity();
+                        //alertDialog.dismiss();
                     }
                 })
                 .create();
@@ -247,7 +289,7 @@ public class MainFragment extends Fragment {
 
         //set positive button in center
         final Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-        positiveButton.setBackgroundColor(getResources().getColor(R.color.yellow));
+        positiveButton.setBackgroundColor(getResources().getColor(R.color.blue));
         positiveButton.setTextColor(getResources().getColor(R.color.white));
         LinearLayout parent = (LinearLayout) positiveButton.getParent();
         parent.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -259,17 +301,22 @@ public class MainFragment extends Fragment {
         getActivity().finish();
         startActivity(intent);
     }
+    private void showFragment(Fragment fragment){
+        getChildFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
+    }
     public void onBackPressed()
     {
         if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT2){
             setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS.FRAGMENT1);
             setButtonVisibility(mFragmentMainBinding.previousButton,View.GONE);
-            navController.popBackStack(R.id.page1Fragment,false);
+            //navController.popBackStack(R.id.page1Fragment,false);
+            showFragment(page1Fragment);
 
         }
         else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT3){
             setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS.FRAGMENT2);
-            navController.popBackStack(R.id.page2Fragment,false);
+            //navController.popBackStack(R.id.page2Fragment,false);
+            showFragment(page2Fragment);
 
         }
         else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT4||
@@ -277,7 +324,8 @@ public class MainFragment extends Fragment {
             setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS.FRAGMENT3);
             setButtonVisibility(mFragmentMainBinding.submitButton,View.GONE);
             setButtonVisibility(mFragmentMainBinding.nextButton,View.VISIBLE);
-            navController.popBackStack(R.id.page3Fragment,false);
+            //navController.popBackStack(R.id.page3Fragment,false);
+            showFragment(page3Fragment);
         }
         else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT1){
             getActivity().finish();

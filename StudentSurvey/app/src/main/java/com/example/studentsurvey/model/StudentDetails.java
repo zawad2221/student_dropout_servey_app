@@ -289,4 +289,26 @@ public class StudentDetails {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "StudentDetails{" +
+                ", gender=" + gender +
+                ", nationality='" + nationality + '\'' +
+                ", place_of_birth='" + place_of_birth + '\'' +
+                ", department='" + department + '\'' +
+                ", year=" + year +
+                ", institute='" + institute + '\'' +
+                ", time_of_group_study=" + time_of_group_study +
+                ", absent_in_a_semester=" + absent_in_a_semester +
+                ", ask_question_frequently=" + ask_question_frequently +
+                ", use_additional_course_material=" + use_additional_course_material +
+                ", result_of_last_semester='" + result_of_last_semester + '\'' +
+                ", meet_with_advisor=" + meet_with_advisor +
+                ", parent_satisfied=" + parent_satisfied +
+                ", parent_education_status=" + parent_education_status +
+                ", amount_of_drop_semester=" + amount_of_drop_semester +
+                ", drop_reason='" + drop_reason + '\'' +
+                ", due_amount='" + due_amount + '\'' +
+                '}';
+    }
 }

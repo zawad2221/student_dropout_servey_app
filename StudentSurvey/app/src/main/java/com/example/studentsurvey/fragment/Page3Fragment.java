@@ -24,7 +24,7 @@ import com.example.studentsurvey.databinding.FragmentPage3Binding;
 public class Page3Fragment extends Fragment {
     MainViewModel mMainViewModel;
     FragmentPage3Binding mFragmentPage3Binding;
-    NavController navController;
+    //NavController navController;
     public Page3Fragment() {
     }
 
@@ -43,7 +43,7 @@ public class Page3Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViewModel();
-        initNavController();
+        //initNavController();
 //        if(MainViewModel.callNextButtonClickObserver3==false){nextButtonClickObserver();
 //        MainViewModel.callNextButtonClickObserver3=true;}
         nextButtonClickObserver();
@@ -70,33 +70,36 @@ public class Page3Fragment extends Fragment {
         });
     }
     private void nextButtonClickObserver(){
-        mMainViewModel.nextButtonClick.observe(this.requireActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
-            @Override
-            public void onChanged(MainViewModel.FRAGMENT_TAGS fragment_tags) {
-                if(navController.getCurrentDestination().getId()!=R.id.page3Fragment){
-                    return;
-                }
-                //Log.d(getString(R.string.DEBUGING_TAG),"on change nextclicked: "+mMainViewModel.nextButtonClick.getValue());
-                //Log.d(getString(R.string.DEBUGING_TAG),"current in onchange frag by nav: "+navController.getCurrentDestination());
-                if(mMainViewModel.nextButtonClick.getValue().equals(MainViewModel.FRAGMENT_TAGS.FRAGMENT3)){
-                    checkInputAndShowError();
-                }
-            }
-        });
+//        mMainViewModel.nextButtonClick.observe(this.requireActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
+//            @Override
+//            public void onChanged(MainViewModel.FRAGMENT_TAGS fragment_tags) {
+//                if(mMainViewModel.currentFragment.getValue()!= MainViewModel.FRAGMENT_TAGS.FRAGMENT3){
+//                    return;
+//                }
+//                //Log.d(getString(R.string.DEBUGING_TAG),"on change nextclicked: "+mMainViewModel.nextButtonClick.getValue());
+//                //Log.d(getString(R.string.DEBUGING_TAG),"current in onchange frag by nav: "+navController.getCurrentDestination());
+//                if(mMainViewModel.nextButtonClick.getValue().equals(MainViewModel.FRAGMENT_TAGS.FRAGMENT3)){
+//                    checkInputAndShowError();
+//                }
+//            }
+//        });
     }
 
-    private void checkInputAndShowError(){
+    public boolean checkInputAndShowError(){
         if(!isSatisfactionSelected()){
             changeVisibilityOfErrorView(mFragmentPage3Binding.satisfactionRadioErrorView,View.VISIBLE);
+            return false;
         }
         else if(!isParentEduSelected()){
             changeVisibilityOfErrorView(mFragmentPage3Binding.fatherRadioErrorView,View.VISIBLE);
+            return false;
         }
         else {
             saveDataInViewModel();
             //showFragment(R.id.action_page3Fragment_to_page4Fragment);
-            getChildFragmentManager().beginTransaction().replace(R.id.fragment_container,new Page4Fragment()).commit();
+            //getChildFragmentManager().beginTransaction().replace(R.id.fragment_container,new Page4Fragment()).commit();
             setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS.FRAGMENT4);
+            return true;
         }
     }
 
@@ -140,26 +143,26 @@ public class Page3Fragment extends Fragment {
     private void changeVisibilityOfErrorView(LinearLayout linearLayout, int visibility){
         linearLayout.setVisibility(visibility);
         initViewModel();
-        initNavController();
+        //initNavController();
         Log.d(getString(R.string.DEBUGING_TAG),"page 3 student info: "+mMainViewModel.studentDetails.getYear());
     }
-    private void showFragment(@IdRes int actionId){
-        navController.navigate(actionId);
-    }
+//    private void showFragment(@IdRes int actionId){
+//        navController.navigate(actionId);
+//    }
     private void setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS selectedFragment){
         mMainViewModel.currentFragment.setValue(selectedFragment);
     }
-    private void initNavController(){
-        try {
-//            navController = ((NavHostFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container))
-//                    .getNavController();
-            navController = Navigation.findNavController(getView());
-        }
-        catch (Exception e){
-            Log.d(getString(R.string.DEBUGING_TAG),"exception: "+e.getMessage());
-        }
-
-    }
+//    private void initNavController(){
+//        try {
+////            navController = ((NavHostFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container))
+////                    .getNavController();
+//            navController = Navigation.findNavController(getView());
+//        }
+//        catch (Exception e){
+//            Log.d(getString(R.string.DEBUGING_TAG),"exception: "+e.getMessage());
+//        }
+//
+//    }
     private void initViewModel(){
         mMainViewModel = new ViewModelProvider(getActivity())
                 .get(MainViewModel.class);

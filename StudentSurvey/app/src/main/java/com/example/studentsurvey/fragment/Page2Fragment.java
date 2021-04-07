@@ -25,7 +25,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class Page2Fragment extends Fragment {
     MainViewModel mMainViewModel;
 
-    NavController navController;
+    //NavController navController;
     FragmentPage2Binding mFragmentPage2Binding;
     public Page2Fragment() {
     }
@@ -52,7 +52,7 @@ public class Page2Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViewModel();
-        initNavController();
+        //initNavController();
 //        if(MainViewModel.callNextButtonClickObserver2==false){nextButtonClickObserver();
 //        MainViewModel.callNextButtonClickObserver2=true;}
         nextButtonClickObserver();
@@ -102,19 +102,19 @@ public class Page2Fragment extends Fragment {
     }
 
     private void nextButtonClickObserver(){
-        mMainViewModel.nextButtonClick.observe(this.requireActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
-            @Override
-            public void onChanged(MainViewModel.FRAGMENT_TAGS fragment_tags) {
-                if(navController.getCurrentDestination().getId()!=R.id.page2Fragment){
-                    return;
-                }
-                //Log.d(getString(R.string.DEBUGING_TAG),"on change nextclicked: "+mMainViewModel.nextButtonClick.getValue());
-                //Log.d(getString(R.string.DEBUGING_TAG),"current in onchange frag by nav: "+navController.getCurrentDestination());
-                if(mMainViewModel.nextButtonClick.getValue().equals(MainViewModel.FRAGMENT_TAGS.FRAGMENT2)){
-                    checkInputAndShowError();
-                }
-            }
-        });
+//        mMainViewModel.nextButtonClick.observe(this.requireActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
+//            @Override
+//            public void onChanged(MainViewModel.FRAGMENT_TAGS fragment_tags) {
+//                if(mMainViewModel.currentFragment.getValue()!= MainViewModel.FRAGMENT_TAGS.FRAGMENT2){
+//                    return;
+//                }
+//                //Log.d(getString(R.string.DEBUGING_TAG),"on change nextclicked: "+mMainViewModel.nextButtonClick.getValue());
+//                //Log.d(getString(R.string.DEBUGING_TAG),"current in onchange frag by nav: "+navController.getCurrentDestination());
+//                if(mMainViewModel.nextButtonClick.getValue().equals(MainViewModel.FRAGMENT_TAGS.FRAGMENT2)){
+//                    checkInputAndShowError();
+//                }
+//            }
+//        });
     }
 
     private void initViewModel(){
@@ -122,49 +122,56 @@ public class Page2Fragment extends Fragment {
                 .get(MainViewModel.class);
     }
 
-    private void checkInputAndShowError(){
+    public boolean checkInputAndShowError(){
         Log.d("DEBUGING_TAG","page2 :gpa: "+getGrpStudyTime());
 
         if(!isGprStudyValid()){
             showErrorInTextInputLayout(mFragmentPage2Binding.groupStudyTimeOutlinedTextFieldLayout,"Required Input");
+            return false;
         }
         else if(!isAbsentTimeValid()){
             showErrorInTextInputLayout(mFragmentPage2Binding.absentInSemesterOutlinedTextFieldLayout,"Required Input");
+            return false;
         }
         else if(!isAskedFrequentlySelected()){
             changeVisibilityOfErrorView(mFragmentPage2Binding.askedQuestionRadioErrorView,View.VISIBLE);
+            return false;
         }
         else if(!isAdditionalResourceSelected()){
             changeVisibilityOfErrorView(mFragmentPage2Binding.additionalMaterialRadioErrorView,View.VISIBLE);
+            return false;
         }
         else if(!isCgpaValid()){
             showErrorInTextInputLayout(mFragmentPage2Binding.lastSemesterCGPAOutlinedTextFieldLayout,"Invalid Input");
+            return false;
         }
         else if(!isMeetWithAdvisorSelected()){
             changeVisibilityOfErrorView(mFragmentPage2Binding.advisorRadioErrorView,View.VISIBLE);
+            return false;
         }
         else {
-            Log.d(getString(R.string.DEBUGING_TAG),"showing page3");
+            //Log.d(getString(R.string.DEBUGING_TAG),"showing page3");
             saveDataInViewModel();
             //showFragment(R.id.action_page2Fragment_to_page3Fragment);
-            getChildFragmentManager().beginTransaction().replace(R.id.fragment_container,new Page3Fragment()).commit();
+            //getChildFragmentManager().beginTransaction().replace(R.id.fragment_container,new Page3Fragment()).commit();
             setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS.FRAGMENT3);
+            return true;
         }
     }
-    private void showFragment(@IdRes int actionId){
-        navController.navigate(actionId);
-    }
-    private void initNavController(){
-        try {
-//            navController = ((NavHostFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container))
-//                    .getNavController();
-            navController = Navigation.findNavController(getView());
-        }
-        catch (Exception e){
-            Log.d(getString(R.string.DEBUGING_TAG),"exception: "+e.getMessage());
-        }
-
-    }
+//    private void showFragment(@IdRes int actionId){
+//        navController.navigate(actionId);
+//    }
+//    private void initNavController(){
+//        try {
+////            navController = ((NavHostFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container))
+////                    .getNavController();
+//            navController = Navigation.findNavController(getView());
+//        }
+//        catch (Exception e){
+//            Log.d(getString(R.string.DEBUGING_TAG),"exception: "+e.getMessage());
+//        }
+//
+//    }
 
     private void saveDataInViewModel(){
         mMainViewModel.studentDetails.setTime_of_group_study((int)Float.parseFloat(getGrpStudyTime()));

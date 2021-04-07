@@ -24,7 +24,7 @@ public class Page4Fragment extends Fragment {
     FragmentPage4Binding mFragmentPage4Binding;
     MainViewModel mMainViewModel;
     ArrayAdapter<String> dropReasonAdapter;
-    NavController navController;
+    //NavController navController;
     public Page4Fragment() {
     }
 
@@ -42,7 +42,7 @@ public class Page4Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViewModel();
-        initNavController();
+        //initNavController();
         initDropReasonDropDown();
 //        if(MainViewModel.callNextButtonClickObserver4==false){nextButtonClickObserver();
 //        MainViewModel.callNextButtonClickObserver4=false;}
@@ -73,33 +73,37 @@ public class Page4Fragment extends Fragment {
    }
 
     private void nextButtonClickObserver(){
-        mMainViewModel.nextButtonClick.observe(this.requireActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
-            @Override
-            public void onChanged(MainViewModel.FRAGMENT_TAGS fragment_tags) {
-                if(navController.getCurrentDestination().getId()!=R.id.page4Fragment){
-                    return;
-                }
-                //Log.d(getString(R.string.DEBUGING_TAG),"on change nextclicked: "+mMainViewModel.nextButtonClick.getValue());
-                //Log.d(getString(R.string.DEBUGING_TAG),"current in onchange frag by nav: "+navController.getCurrentDestination());
-                if(mMainViewModel.nextButtonClick.getValue().equals(MainViewModel.FRAGMENT_TAGS.FRAGMENT_SUBMIT)){
-                    checkInputAndShowError();
-                }
-            }
-        });
+//        mMainViewModel.nextButtonClick.observe(this.requireActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
+//            @Override
+//            public void onChanged(MainViewModel.FRAGMENT_TAGS fragment_tags) {
+//                if(mMainViewModel.currentFragment.getValue()!= MainViewModel.FRAGMENT_TAGS.FRAGMENT4){
+//                    return;
+//                }
+//                //Log.d(getString(R.string.DEBUGING_TAG),"on change nextclicked: "+mMainViewModel.nextButtonClick.getValue());
+//                //Log.d(getString(R.string.DEBUGING_TAG),"current in onchange frag by nav: "+navController.getCurrentDestination());
+//                if(mMainViewModel.nextButtonClick.getValue().equals(MainViewModel.FRAGMENT_TAGS.FRAGMENT_SUBMIT)){
+//                    checkInputAndShowError();
+//                }
+//            }
+//        });
     }
-    private void checkInputAndShowError(){
+    public boolean checkInputAndShowError(){
         if(!isDropSemesterNumValid()){
             showErrorInTextInputLayout(mFragmentPage4Binding.numOfDropSemesterOutLineedTextFieldLayout,"Invalid Input");
+            return false;
         }
         else if(!isDropReasonSelected()){
             showErrorInTextInputLayout(mFragmentPage4Binding.dropReasonTextLayout,"Invalid Input");
+            return false;
         }
         else if(!isDueAmountValid()){
             showErrorInTextInputLayout(mFragmentPage4Binding.dueAmountOutlinedTextFieldLayout,"Invalid Input");
+            return false;
         }
         else {
             saveDataInViewModel();
             setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS.FRAGMENT_SUBMIT);
+            return true;
         }
     }
     private void saveDataInViewModel(){
@@ -150,17 +154,17 @@ public class Page4Fragment extends Fragment {
     private void setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS selectedFragment){
         mMainViewModel.currentFragment.setValue(selectedFragment);
     }
-    private void initNavController(){
-        try {
-//            navController = ((NavHostFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container))
-//                    .getNavController();
-            navController = Navigation.findNavController(getView());
-        }
-        catch (Exception e){
-            Log.d(getString(R.string.DEBUGING_TAG),"exception: "+e.getMessage());
-        }
-
-    }
+//    private void initNavController(){
+//        try {
+////            navController = ((NavHostFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container))
+////                    .getNavController();
+//            navController = Navigation.findNavController(getView());
+//        }
+//        catch (Exception e){
+//            Log.d(getString(R.string.DEBUGING_TAG),"exception: "+e.getMessage());
+//        }
+//
+//    }
     private void showErrorInTextInputLayout(TextInputLayout textInputLayout, String message){
         textInputLayout.setError(message);
     }
