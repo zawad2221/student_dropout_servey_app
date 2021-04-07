@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         mActivityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mActivityMainBinding.getRoot());
         mainFragment = new MainFragment();
+
+
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.mainFragmentContainer,mainFragment)
