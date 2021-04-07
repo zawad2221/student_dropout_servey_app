@@ -24,10 +24,12 @@
             android:background="@color/cardview_background"
             >
             <LinearLayout
+                android:id="@+id/radioGroupLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/cardview_padding"
+                app:errorEnabled="true"
                 >
                 <TextView
                     android:layout_width="wrap_content"
@@ -54,6 +56,33 @@
                         android:text="@string/label_radio_button_female"/>
 
                 </RadioGroup>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/genderRadioErrorView"
+                    android:visibility="gone"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/error"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:textColor="@android:color/holo_red_dark"
+                        android:text="This field is required"
+
+                        />
+                </LinearLayout>
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -278,6 +307,32 @@
                         android:text="@string/label_radio_button_forth"/>
 
                 </RadioGroup>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/yearRadioErrorView"
+                    android:visibility="gone"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/error"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:textColor="@android:color/holo_red_dark"
+                        android:text="This field is required"
+
+                        />
+                </LinearLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

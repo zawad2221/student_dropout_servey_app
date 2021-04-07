@@ -67,6 +67,10 @@ dependencies {
     // explicitly depend on RxJava's latest version for bug fixes and new features.
     // (see https://github.com/ReactiveX/RxJava/releases for latest 3.x.x version)
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+    def reactivestreams_version = "1.1.1"
+
+    
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.google.code.gson:gson:2.6.2'
@@ -77,4 +81,5 @@ dependencies {
     // ViewModel and live data
     def lifecycle_version = "2.2.0"
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
 }

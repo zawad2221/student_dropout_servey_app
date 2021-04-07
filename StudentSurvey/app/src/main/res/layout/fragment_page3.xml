@@ -43,17 +43,44 @@
                     android:layout_height="wrap_content"
                     >
                     <RadioButton
-                        android:id="@+id/radio_button_parent_satisfaction"
+                        android:id="@+id/radio_button_parent_satisfaction_yes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/label_radio_button_yes"/>
                     <RadioButton
-                        android:id="@+id/radio_button_parent_atisfaction"
+                        android:id="@+id/radio_button_parent_satisfaction_no"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/label_radio_button_no"/>
 
                 </RadioGroup>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/satisfactionRadioErrorView"
+                    android:visibility="gone"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/error"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:textColor="@android:color/holo_red_dark"
+                        android:text="This field is required"
+
+                        />
+                </LinearLayout>
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -76,7 +103,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Father's highest Education Degree?*"
+                    android:text="Your Parent's highest Education Degree?*"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -112,6 +139,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/label_radio_button_psc"/>
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -131,10 +159,37 @@
                     </LinearLayout>
 
                 </RadioGroup>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/fatherRadioErrorView"
+                    android:visibility="gone"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/error"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:textColor="@android:color/holo_red_dark"
+                        android:text="This field is required"
+
+                        />
+                </LinearLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/fatherEduStatusCard"

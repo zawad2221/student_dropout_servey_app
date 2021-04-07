@@ -1,6 +1,13 @@
 package com.example.studentsurvey;
 
+import android.content.Context;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.studentsurvey.model.StudentDetails;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -8,13 +15,44 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainViewModel extends ViewModel {
+    Repository repository;
+
+    public MediatorLiveData<StudentDetails> result = new MediatorLiveData<>();
+
+    public void saveInfo(Context context, StudentDetails studentDetails){
+        repository = Repository.getInstance();
+        result = repository.saveInfo(context,studentDetails);
+    }
+
+    public static int page1nextObserver,page2nextObserver,page3nextObserver,page4nextObserver;
+
+    public MainViewModel() {
+        initNextButtonClick();
+    }
+
     public enum FRAGMENT_TAGS{
         FRAGMENT1,
         FRAGMENT2,
         FRAGMENT3,
-        FRAGMENT4
+        FRAGMENT_SUBMIT, FRAGMENT4
     }
-    public FRAGMENT_TAGS currentFragment = FRAGMENT_TAGS.FRAGMENT1;
+
+    public MutableLiveData<FRAGMENT_TAGS> nextButtonClick;
+    public static boolean callNextButtonClickObserver=false,
+            callNextButtonClickObserver2=false,callNextButtonClickObserver3=false,
+            callNextButtonClickObserver4=false;
+    public void initNextButtonClick(){
+        if(nextButtonClick==null) nextButtonClick = new MutableLiveData<>();
+    }
+
+    public StudentDetails studentDetails = new StudentDetails();
+
+
+
+
+    public MutableLiveData<FRAGMENT_TAGS> currentFragment = new MutableLiveData<>(FRAGMENT_TAGS.FRAGMENT1);
+
+
     public List<String> nationalityArrayList = Arrays.asList(
             new String[]{"Bangladesh", "India","Somalia", "Nigeria","Nepal", "China"}
             );

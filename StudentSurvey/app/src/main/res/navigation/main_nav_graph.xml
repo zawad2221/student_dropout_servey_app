@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_page1" >
         <action
             android:id="@+id/action_page1Fragment_to_page2Fragment"
-            app:destination="@id/page2Fragment" />
+            app:destination="@id/page2Fragment"
+
+            />
     </fragment>
     <fragment
         android:id="@+id/page2Fragment"
@@ -30,7 +32,9 @@
         tools:layout="@layout/fragment_page3" >
         <action
             android:id="@+id/action_page3Fragment_to_page4Fragment"
-            app:destination="@id/page4Fragment" />
+            app:destination="@id/page4Fragment"
+
+            />
     </fragment>
     <fragment
         android:id="@+id/page4Fragment"

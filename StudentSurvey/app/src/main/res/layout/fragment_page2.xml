@@ -42,6 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/label_group_study_time"
+                    android:clickable="true"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                     app:errorEnabled="true"
                     <com.google.android.material.textfield.TextInputEditText
@@ -138,6 +139,32 @@
                         android:text="@string/label_radio_button_no"/>
 
                 </RadioGroup>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/askedQuestionRadioErrorView"
+                    android:visibility="gone"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/error"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:textColor="@android:color/holo_red_dark"
+                        android:text="This field is required"
+
+                        />
+                </LinearLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -160,7 +187,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Do you ask questions in the class frequently? *"
+                    android:text="Do you use additional course material for study? *"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -182,6 +209,32 @@
                         android:text="@string/label_radio_button_no"/>
 
                 </RadioGroup>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/additionalMaterialRadioErrorView"
+                    android:visibility="gone"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/error"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:textColor="@android:color/holo_red_dark"
+                        android:text="This field is required"
+
+                        />
+                </LinearLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -268,6 +321,32 @@
                         android:text="@string/label_radio_button_no"/>
 
                 </RadioGroup>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/advisorRadioErrorView"
+                    android:visibility="gone"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/error"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:textColor="@android:color/holo_red_dark"
+                        android:text="This field is required"
+
+                        />
+                </LinearLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
