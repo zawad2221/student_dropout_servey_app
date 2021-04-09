@@ -49,7 +49,7 @@ public class AboutActivity extends AppCompatActivity {
                 .get(MainViewModel.class);
     }
     private void initRecyclerView(){
-        memberRecyclerViewAdapter = new MemberRecyclerViewAdapter(MainViewModel.teamMembers, new MemberRecyclerViewAdapter.OnItemClick() {
+        memberRecyclerViewAdapter = new MemberRecyclerViewAdapter(mMainViewModel.teamMembers, new MemberRecyclerViewAdapter.OnItemClick() {
             @Override
             public void socialItemClick(int position, MainViewModel.SOCIAL_APP socialAppName) {
                 redirectToSocialAccount(position,socialAppName);
@@ -74,26 +74,26 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     private void launchLinkedIn(int position) {
-        if(MainViewModel.teamMembers.get(position).linkedInIdLink==null) return;
+        if(mMainViewModel.teamMembers.get(position).linkedInIdLink==null) return;
         Intent viewIntent =
                 new Intent("android.intent.action.VIEW",
-                        Uri.parse(MainViewModel.teamMembers.get(position).linkedInIdLink));
+                        Uri.parse(mMainViewModel.teamMembers.get(position).linkedInIdLink));
         startActivity(viewIntent);
     }
 
     private void launchFacebook(int position) {
-        if(MainViewModel.teamMembers.get(position).facebookIdLink==null) return;
+        if(mMainViewModel.teamMembers.get(position).facebookIdLink==null) return;
         Intent viewIntent =
                 new Intent("android.intent.action.VIEW",
-                        Uri.parse(MainViewModel.teamMembers.get(position).facebookIdLink));
+                        Uri.parse(mMainViewModel.teamMembers.get(position).facebookIdLink));
         startActivity(viewIntent);
     }
 
     private void launchTwitter(int position) {
-        if(MainViewModel.teamMembers.get(position).twitterIdLink==null) return;
+        if(mMainViewModel.teamMembers.get(position).twitterIdLink==null) return;
         Intent viewIntent =
                 new Intent("android.intent.action.VIEW",
-                        Uri.parse(MainViewModel.teamMembers.get(position).twitterIdLink));
+                        Uri.parse(mMainViewModel.teamMembers.get(position).twitterIdLink));
         startActivity(viewIntent);
     }
 

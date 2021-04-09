@@ -25,7 +25,7 @@ public class MainViewModel extends ViewModel {
         result = repository.saveInfo(context,studentDetails);
     }
 
-    public static List<TeamMember> teamMembers = new ArrayList<>();
+    public List<TeamMember> teamMembers = new ArrayList<>();
     public void initTeamMember(){
         TeamMember teamMemberZawad = new TeamMember();
         teamMemberZawad.name="Zawad Hossain";
@@ -35,6 +35,13 @@ public class MainViewModel extends ViewModel {
         teamMemberZawad.linkedInIdLink="https://www.linkedin.com/in/zawadhossain/";
         teamMemberZawad.imageDrawableResource=R.drawable.zawad_n;
 
+        TeamMember teamMemberAnwarSir = new TeamMember();
+        teamMemberAnwarSir.name ="Md Anwar Hossen";
+        teamMemberAnwarSir.role ="Supervisor";
+        teamMemberAnwarSir.facebookIdLink = "https://www.facebook.com/mdanwarhossenemon11";
+        teamMemberAnwarSir.imageDrawableResource = R.drawable.anwar1;
+
+        teamMembers.add(teamMemberAnwarSir);
         teamMembers.add(teamMemberZawad);
     }
 
