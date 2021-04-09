@@ -30,7 +30,17 @@ public class AboutActivity extends AppCompatActivity {
         initViewModel();
         mMainViewModel.initTeamMember();
         initRecyclerView();
+        activityCloseButtonListener();
 
+    }
+
+    private void activityCloseButtonListener(){
+        mActivityAboutBinding.activityClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
 

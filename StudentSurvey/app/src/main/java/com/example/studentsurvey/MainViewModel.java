@@ -33,7 +33,7 @@ public class MainViewModel extends ViewModel {
         teamMemberZawad.facebookIdLink="https://www.facebook.com/rifat.zawadhossain";
         teamMemberZawad.twitterIdLink="https://twitter.com/ZawadHossain12";
         teamMemberZawad.linkedInIdLink="https://www.linkedin.com/in/zawadhossain/";
-        teamMemberZawad.imageDrawableResource=R.drawable.zawad;
+        teamMemberZawad.imageDrawableResource=R.drawable.zawad_n;
 
         teamMembers.add(teamMemberZawad);
     }
