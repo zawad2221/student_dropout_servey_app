@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.studentsurvey.model.StudentDetails;
+import com.example.studentsurvey.model.TeamMember;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -24,6 +25,18 @@ public class MainViewModel extends ViewModel {
         result = repository.saveInfo(context,studentDetails);
     }
 
+    public static List<TeamMember> teamMembers = new ArrayList<>();
+    public void initTeamMember(){
+        TeamMember teamMemberZawad = new TeamMember();
+        teamMemberZawad.name="Zawad Hossain";
+        teamMemberZawad.role="Android App Development";
+        teamMemberZawad.facebookIdLink="https://www.facebook.com/rifat.zawadhossain";
+        teamMemberZawad.twitterIdLink="https://twitter.com/ZawadHossain12";
+        teamMemberZawad.linkedInIdLink="https://www.linkedin.com/in/zawadhossain/";
+
+        teamMembers.add(teamMemberZawad);
+    }
+
     public static int page1nextObserver,page2nextObserver,page3nextObserver,page4nextObserver;
 
     public MainViewModel() {
@@ -35,6 +48,11 @@ public class MainViewModel extends ViewModel {
         FRAGMENT2,
         FRAGMENT3,
         FRAGMENT_SUBMIT, FRAGMENT4
+    }
+    public enum SOCIAL_APP{
+        FACEBOOK,
+        LINKED_IN,
+        TWITTER
     }
 
     public MutableLiveData<FRAGMENT_TAGS> nextButtonClick;

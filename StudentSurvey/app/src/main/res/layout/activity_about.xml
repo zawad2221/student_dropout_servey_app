@@ -48,13 +48,11 @@
             android:layout_marginLeft="@dimen/about_card_margin_left_right"
             android:layout_marginRight="@dimen/about_card_margin_left_right"
             android:id="@+id/aboutMessageCard"
+            app:cardUseCompatPadding="true"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/appName"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 android:text="@string/survey_welcome_message"
                 android:textAlignment="center"
                 android:textSize="20sp"
@@ -85,7 +83,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="22dp"
-            android:id="@+id/teamMember"
+            android:id="@+id/teamMemberRecyclerView"
             />
 
 

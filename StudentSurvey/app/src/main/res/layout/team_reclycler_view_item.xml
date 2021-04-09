@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="202dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    app:cardCornerRadius="11dp"
+    app:cardElevation="10dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="#FFFFFF"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/teamMemberItem"
+        >
+
+        <ImageView
+            android:id="@+id/teamMemberImage"
+            android:layout_width="121dp"
+            android:layout_height="121dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:src="@drawable/demo_profile_pic"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/round_image_background"
+            android:layout_marginLeft="11dp"
+
+            />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="150dp"
+
+            />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineHorizontalBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="142dp"
+
+
+            />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="15dp"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teamMemberName"
+            android:text="Zawad Hossain"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@id/guidelineHorizontal"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@android:color/black"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teamMemberRole"
+            android:text="Android App Development"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/teamMemberName"
+            android:layout_marginTop="2dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+
+
+        <LinearLayout
+            android:id="@+id/timeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/guideline"
+            app:layout_constraintBottom_toTopOf="@id/guidelineHorizontalBottom"
+            android:orientation="horizontal"
+
+            >
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/facebook_icon"
+                android:id="@+id/facebookButton"
+                />
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:src="@drawable/twitter_icon"
+                android:id="@+id/twitterButton"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"
+                />
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:src="@drawable/linked_in_icon"
+                android:id="@+id/linkedInButton"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"
+                />
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

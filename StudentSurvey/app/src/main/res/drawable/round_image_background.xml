@@ -6,6 +6,7 @@
         android:width="54dp"
         android:height="54dp"
         />
+    <solid android:color="@color/blue"/>
 
 
 
