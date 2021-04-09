@@ -124,18 +124,19 @@
                     />
                 <RadioGroup
                     android:id="@+id/radioGroupAskedQuestionFrequently"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
                     >
                     <RadioButton
                         android:id="@+id/radio_button_asked_question_yes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="@string/label_radio_button_yes"/>
                     <RadioButton
                         android:id="@+id/radio_button_asked_question_no"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="@string/label_radio_button_no"/>
 
                 </RadioGroup>
@@ -196,16 +197,17 @@
                     android:id="@+id/radioGroupUsedAdditionalMaterial"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     >
                     <RadioButton
                         android:id="@+id/radio_button_used_additional_yes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="@string/label_radio_button_yes"/>
                     <RadioButton
                         android:id="@+id/radio_button_used_additional_no"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="@string/label_radio_button_no"/>
 
                 </RadioGroup>
@@ -308,16 +310,17 @@
                     android:id="@+id/radioGroupMeetWithAdvisor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     >
                     <RadioButton
                         android:id="@+id/radio_button_meet_advisor_yes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="@string/label_radio_button_yes"/>
                     <RadioButton
                         android:id="@+id/radio_button_meet_advisor_no"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="@string/label_radio_button_no"/>
 
                 </RadioGroup>

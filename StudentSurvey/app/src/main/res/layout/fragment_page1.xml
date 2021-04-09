@@ -43,16 +43,17 @@
                     android:id="@+id/radioGroupGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     >
                     <RadioButton
                         android:id="@+id/radio_button_male"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="@string/label_radio_button_male"/>
                     <RadioButton
                         android:id="@+id/radio_button_female"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="@string/label_radio_button_female"/>
 
                 </RadioGroup>
@@ -96,7 +97,7 @@
             android:layout_marginTop="9dp"
             >
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/cardview_padding"
@@ -112,7 +113,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/nationalityTextLayout"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
                     app:errorEnabled="true"
                 <AutoCompleteTextView
@@ -139,7 +140,7 @@
             android:layout_marginTop="9dp"
             >
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/cardview_padding"
@@ -155,7 +156,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/placeOfBirthTextLayout"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
                     app:errorEnabled="true"
                     <AutoCompleteTextView
@@ -182,7 +183,7 @@
             android:layout_marginTop="9dp"
             >
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/cardview_padding"
@@ -198,7 +199,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/instituteNameTextLayout"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
                     app:errorEnabled="true"
                     <AutoCompleteTextView
@@ -224,7 +225,7 @@
             android:layout_marginTop="9dp"
             >
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/cardview_padding"
@@ -240,7 +241,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/departmentNameTextLayout"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
                     app:errorEnabled="true"
                     <AutoCompleteTextView
@@ -284,25 +285,26 @@
                     android:id="@+id/radioGroupYear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     >
                     <RadioButton
                         android:id="@+id/radio_button_first"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/label_radio_button_first"/>
                     <RadioButton
                         android:id="@+id/radio_button_second"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/label_radio_button_second"/>
                     <RadioButton
                         android:id="@+id/radio_button_third"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/label_radio_button_third"/>
                     <RadioButton
                         android:id="@+id/radio_button_forth"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/label_radio_button_forth"/>
 
