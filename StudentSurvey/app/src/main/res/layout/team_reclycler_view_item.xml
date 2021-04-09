@@ -16,17 +16,17 @@
         android:id="@+id/teamMemberItem"
         >
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
             android:id="@+id/teamMemberImage"
             android:layout_width="121dp"
             android:layout_height="121dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:src="@drawable/demo_profile_pic"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:background="@drawable/round_image_background"
+
             android:layout_marginLeft="11dp"
 
             />

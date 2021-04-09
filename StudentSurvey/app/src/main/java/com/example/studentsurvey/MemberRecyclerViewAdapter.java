@@ -61,6 +61,7 @@ public class MemberRecyclerViewAdapter extends RecyclerView.Adapter<MemberRecycl
                 onItemClick.socialItemClick(position, MainViewModel.SOCIAL_APP.LINKED_IN);
             }
         });
+        holder.teamReclyclerViewItemBinding.teamMemberImage.setBackgroundResource(teamMember.imageDrawableResource);
 
     }
 

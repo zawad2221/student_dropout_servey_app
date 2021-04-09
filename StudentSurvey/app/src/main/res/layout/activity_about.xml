@@ -42,13 +42,14 @@
             app:layout_constraintTop_toBottomOf="@id/appName"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:elevation="22dp"
-            app:cardCornerRadius="12dp"
+            android:elevation="10dp"
+            app:cardCornerRadius="11dp"
             android:layout_marginTop="41dp"
             android:layout_marginLeft="@dimen/about_card_margin_left_right"
             android:layout_marginRight="@dimen/about_card_margin_left_right"
             android:id="@+id/aboutMessageCard"
             app:cardUseCompatPadding="true"
+            app:cardBackgroundColor="#FFFFFF"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -84,6 +85,8 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="22dp"
             android:id="@+id/teamMemberRecyclerView"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
             />
 
 
