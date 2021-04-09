@@ -4,4 +4,7 @@
     <dimen name="question_text_size">22dp</dimen>
     <dimen name="question_text_bottom_margin">8dp</dimen>
     <dimen name="cardview_margin_top">9dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="about_card_margin_left_right">11dp</dimen>
 </resources>

@@ -58,14 +58,24 @@ public class Page2Fragment extends Fragment {
         nextButtonClickObserver();
         Log.d(getString(R.string.DEBUGING_TAG),"onViewCreated page 2student info: "+mMainViewModel.studentDetails.getYear());
 
+        yearRadioGroupOnClick();
         studyHourOnKeyListener();
-        advisedRadioClicked();
-        resultOnLastSemesterOnKeyChange();
-        studyMaterialRadioOnClicked();
-        questionAskedRadioClicked();
         absentOkKeyListener();
+        questionAskedRadioClicked();
 
 
+
+
+
+
+
+    }
+    private void yearRadioGroupOnClick(){
+        mFragmentPage2Binding.radioGroupYear.setOnCheckedChangeListener( (radioGroup, isChecked) -> {
+            if(isYearSelected()){
+                changeYearErrorViewVisibility(View.GONE);
+            }
+        });
     }
     private void studyHourOnKeyListener(){
         mFragmentPage2Binding.groupStudyTimeEditText.setOnKeyListener( (v, keyCode, event) -> {
@@ -84,22 +94,7 @@ public class Page2Fragment extends Fragment {
             if(isAskedFrequentlySelected())changeVisibilityOfErrorView(mFragmentPage2Binding.askedQuestionRadioErrorView,View.GONE);
         });
     }
-    private void studyMaterialRadioOnClicked(){
-        mFragmentPage2Binding.radioGroupUsedAdditionalMaterial.setOnCheckedChangeListener((group, checkedId)->{
-            if(isAdditionalResourceSelected())changeVisibilityOfErrorView(mFragmentPage2Binding.additionalMaterialRadioErrorView,View.GONE);
-        });
-    }
-    private void resultOnLastSemesterOnKeyChange(){
-        mFragmentPage2Binding.lastSemesterCGPAEditText.setOnKeyListener((v, keyCode, event)->{
-            showErrorInTextInputLayout(mFragmentPage2Binding.lastSemesterCGPAOutlinedTextFieldLayout,null);
-            return false;
-        });
-    }
-    private void advisedRadioClicked(){
-        mFragmentPage2Binding.radioGroupMeetWithAdvisor.setOnCheckedChangeListener((group, checkedId)->{
-            if(isMeetWithAdvisorSelected()) changeVisibilityOfErrorView(mFragmentPage2Binding.advisorRadioErrorView,View.GONE);
-        });
-    }
+
 
     private void nextButtonClickObserver(){
 //        mMainViewModel.nextButtonClick.observe(this.requireActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
@@ -124,8 +119,11 @@ public class Page2Fragment extends Fragment {
 
     public boolean checkInputAndShowError(){
         Log.d("DEBUGING_TAG","page2 :gpa: "+getGrpStudyTime());
-
-        if(!isGprStudyValid()){
+        if(!isYearSelected()){
+            changeYearErrorViewVisibility(View.VISIBLE);
+            return false;
+        }
+        else if(!isGprStudyValid()){
             showErrorInTextInputLayout(mFragmentPage2Binding.groupStudyTimeOutlinedTextFieldLayout,"Required Input");
             return false;
         }
@@ -137,18 +135,7 @@ public class Page2Fragment extends Fragment {
             changeVisibilityOfErrorView(mFragmentPage2Binding.askedQuestionRadioErrorView,View.VISIBLE);
             return false;
         }
-        else if(!isAdditionalResourceSelected()){
-            changeVisibilityOfErrorView(mFragmentPage2Binding.additionalMaterialRadioErrorView,View.VISIBLE);
-            return false;
-        }
-        else if(!isCgpaValid()){
-            showErrorInTextInputLayout(mFragmentPage2Binding.lastSemesterCGPAOutlinedTextFieldLayout,"Invalid Input");
-            return false;
-        }
-        else if(!isMeetWithAdvisorSelected()){
-            changeVisibilityOfErrorView(mFragmentPage2Binding.advisorRadioErrorView,View.VISIBLE);
-            return false;
-        }
+
         else {
             //Log.d(getString(R.string.DEBUGING_TAG),"showing page3");
             saveDataInViewModel();
@@ -174,12 +161,32 @@ public class Page2Fragment extends Fragment {
 //    }
 
     private void saveDataInViewModel(){
+        mMainViewModel.studentDetails.setYear(getSelectedYearRadioId()==R.id.radio_button_first ? 1:(
+            getSelectedYearRadioId()==R.id.radio_button_second? 2:(
+                    getSelectedYearRadioId()==R.id.radio_button_third? 3:4
+            )
+        ));
         mMainViewModel.studentDetails.setTime_of_group_study((int)Float.parseFloat(getGrpStudyTime()));
         mMainViewModel.studentDetails.setAbsent_in_a_semester((int)Float.parseFloat(getAbsentTime()));
         mMainViewModel.studentDetails.setAsk_question_frequently(getAskedQuestionSelectedRadioId()==R.id.radio_button_asked_question_yes?1:0);
-        mMainViewModel.studentDetails.setUse_additional_course_material(getAdditionalResourceSelectedId()==R.id.radio_button_used_additional_yes?1:0);
-        mMainViewModel.studentDetails.setMeet_with_advisor(getMeetWithAdvisorId()==R.id.radio_button_meet_advisor_yes?1:0);
-        mMainViewModel.studentDetails.setResult_of_last_semester(getResultOfLastSemester());
+
+
+    }
+    private void changeYearErrorViewVisibility(int visibility){
+        mFragmentPage2Binding.yearRadioErrorView.setVisibility(visibility);
+    }
+
+    private int getSelectedYearRadioId(){
+        return mFragmentPage2Binding.radioGroupYear.getCheckedRadioButtonId();
+    }
+
+    private boolean isYearSelected(){
+        if(getSelectedYearRadioId()==-1){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     private String getAbsentTime(){
@@ -194,38 +201,7 @@ public class Page2Fragment extends Fragment {
     private boolean isGprStudyValid(){
         return !getGrpStudyTime().isEmpty();
     }
-    private String getResultOfLastSemester(){
-        return mFragmentPage2Binding.lastSemesterCGPAEditText.getText().toString();
-    }
-    private boolean isCgpaValid(){
-        if(getResultOfLastSemester().isEmpty()){
-            Log.d(getString(R.string.DEBUGING_TAG),"if 1 ");
-            return false;
-        }
-        else if(getResultOfLastSemester().length()>1){
-            Log.d(getString(R.string.DEBUGING_TAG),"if 2 ");
-            try{
-                Log.d(getString(R.string.DEBUGING_TAG),"if 3 ");
-                String[] c = getResultOfLastSemester().split(".");
-                if(c[0].length()==1&&Integer.parseInt(c[0])<4){
-                    Log.d(getString(R.string.DEBUGING_TAG),"if 4 ");
-                    return true;
-                }
-            }
-            catch (Exception e){
-                Log.d(getString(R.string.DEBUGING_TAG),"splite excep: "+e.getMessage());
-                return false;
-            }
-        }
-        else if(getResultOfLastSemester().length()==1 && Integer.parseInt(getResultOfLastSemester())>4){
-            Log.d(getString(R.string.DEBUGING_TAG),"if 5 ");
-            return false;
-        }
 
-
-
-        return true;
-    }
     private int getAskedQuestionSelectedRadioId(){
         return mFragmentPage2Binding.radioGroupAskedQuestionFrequently.getCheckedRadioButtonId();
     }
@@ -237,28 +213,8 @@ public class Page2Fragment extends Fragment {
             return true;
         }
     }
-    private int getAdditionalResourceSelectedId(){
-        return mFragmentPage2Binding.radioGroupUsedAdditionalMaterial.getCheckedRadioButtonId();
-    }
-    private boolean isAdditionalResourceSelected(){
-        if(getAdditionalResourceSelectedId()==-1){
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    private int getMeetWithAdvisorId(){
-        return mFragmentPage2Binding.radioGroupMeetWithAdvisor.getCheckedRadioButtonId();
-    }
-    private boolean isMeetWithAdvisorSelected(){
-        if(getMeetWithAdvisorId()==-1){
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+
+
     private void showErrorInTextInputLayout(TextInputLayout textInputLayout, String message){
         textInputLayout.setError(message);
     }

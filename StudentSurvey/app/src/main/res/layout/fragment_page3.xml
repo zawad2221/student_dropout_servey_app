@@ -13,15 +13,200 @@
         android:padding="9dp"
         android:background="@color/cardview_background"
         >
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/usedAdditionalMaterialCard"
+            app:cardCornerRadius="9dp"
+            android:elevation="22dp"
+            android:background="@color/cardview_background"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/cardview_padding"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Do you use additional course material for study? *"
+                    android:textSize="@dimen/question_text_size"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/question_text_bottom_margin"
+                    />
+                <RadioGroup
+                    android:id="@+id/radioGroupUsedAdditionalMaterial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <RadioButton
+                        android:id="@+id/radio_button_used_additional_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_radio_button_yes"/>
+                    <RadioButton
+                        android:id="@+id/radio_button_used_additional_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_radio_button_no"/>
+
+                </RadioGroup>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/additionalMaterialRadioErrorView"
+                    android:visibility="gone"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/error"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:textColor="@android:color/holo_red_dark"
+                        android:text="This field is required"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/usedAdditionalMaterialCard"
+            android:id="@+id/lastSemesterCGPACard"
+            app:cardCornerRadius="9dp"
+            android:elevation="22dp"
+            android:background="@color/cardview_background"
+            android:layout_marginTop="@dimen/cardview_margin_top"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/cardview_padding"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Result of the Last Semester (SGPA) *"
+                    android:textSize="@dimen/question_text_size"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/question_text_bottom_margin"
+                    />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/lastSemesterCGPAOutlinedTextFieldLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_last_cgpa"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:errorEnabled="true"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/lastSemesterCGPAEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/lastSemesterCGPACard"
+            android:id="@+id/meetWithAdvisorCard"
+            app:cardCornerRadius="9dp"
+            android:elevation="22dp"
+            android:background="@color/cardview_background"
+            android:layout_marginTop="@dimen/cardview_margin_top"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/cardview_padding"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Did you meet with your advisor regularly? *"
+                    android:textSize="@dimen/question_text_size"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/question_text_bottom_margin"
+                    />
+                <RadioGroup
+                    android:id="@+id/radioGroupMeetWithAdvisor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <RadioButton
+                        android:id="@+id/radio_button_meet_advisor_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_radio_button_yes"/>
+                    <RadioButton
+                        android:id="@+id/radio_button_meet_advisor_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_radio_button_no"/>
+
+                </RadioGroup>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/advisorRadioErrorView"
+                    android:visibility="gone"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/error"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:textColor="@android:color/holo_red_dark"
+                        android:text="This field is required"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/meetWithAdvisorCard"
             android:id="@+id/parentSatisfactionCard"
             app:cardCornerRadius="9dp"
             android:elevation="22dp"
             android:background="@color/cardview_background"
+            android:layout_marginTop="@dimen/cardview_margin_top"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,17 +225,18 @@
                 <RadioGroup
                     android:id="@+id/radioGroupParentSatisfaction"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
                     >
                     <RadioButton
                         android:id="@+id/radio_button_parent_satisfaction_yes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="@string/label_radio_button_yes"/>
                     <RadioButton
                         android:id="@+id/radio_button_parent_satisfaction_no"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="@string/label_radio_button_no"/>
 
                 </RadioGroup>
@@ -84,188 +270,7 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/parentSatisfactionCard"
-            android:id="@+id/fatherEduStatusCard"
-            app:cardCornerRadius="9dp"
-            android:elevation="22dp"
-            android:background="@color/cardview_background"
-            android:layout_marginTop="@dimen/cardview_margin_top"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/cardview_padding"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Your Parent's highest Education Degree?*"
-                    android:textSize="@dimen/question_text_size"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="@dimen/question_text_bottom_margin"
-                    />
-                <RadioGroup
-                    android:id="@+id/radioGroupFatherEduStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-                    <RadioButton
-                        android:id="@+id/radio_button_father_hsc_or_above"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_radio_button_hsc_or_above"/>
-                    <RadioButton
-                        android:id="@+id/radio_button_father_hsc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_radio_button_hsc"/>
-                    <RadioButton
-                        android:id="@+id/radio_button_father_ssc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_radio_button_ssc"/>
-                    <RadioButton
-                        android:id="@+id/radio_button_father_jsc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_radio_button_jsc"/>
-                    <RadioButton
-                        android:id="@+id/radio_button_father_psc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_radio_button_psc"/>
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <RadioButton
-                            android:id="@+id/radio_button_father_other"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_radio_button_others"/>
-                        <EditText
-                            android:layout_marginStart="12dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
 
-                            android:backgroundTint="@color/black"
-                            android:id="@+id/edit_text_father_other"
-                            />
-                    </LinearLayout>
-
-                </RadioGroup>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="33dp"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="5dp"
-                    android:id="@+id/fatherRadioErrorView"
-                    android:visibility="gone"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/error"
-                        android:layout_gravity="center"
-                        />
-                    <TextView
-                        android:layout_marginLeft="5dp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-
-                        android:textColor="@android:color/holo_red_dark"
-                        android:text="This field is required"
-
-                        />
-                </LinearLayout>
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/fatherEduStatusCard"
-            android:id="@+id/motherEduStatusCard"
-            app:cardCornerRadius="9dp"
-            android:elevation="22dp"
-            android:background="@color/cardview_background"
-            android:layout_marginTop="@dimen/cardview_margin_top"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/cardview_padding"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Your Mother's highest Education Degree?*"
-                    android:textSize="@dimen/question_text_size"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="@dimen/question_text_bottom_margin"
-                    />
-                <RadioGroup
-                    android:id="@+id/radioGroupMotherEduStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-                    <RadioButton
-                        android:id="@+id/radio_button_mother_hsc_or_above"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_radio_button_hsc_or_above"/>
-                    <RadioButton
-                        android:id="@+id/radio_button_mother_hsc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_radio_button_hsc"/>
-                    <RadioButton
-                        android:id="@+id/radio_button_mother_ssc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_radio_button_ssc"/>
-                    <RadioButton
-                        android:id="@+id/radio_button_mother_jsc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_radio_button_jsc"/>
-                    <RadioButton
-                        android:id="@+id/radio_button_mother_psc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_radio_button_psc"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <RadioButton
-                            android:id="@+id/radio_button_mother_other"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_radio_button_others"/>
-                        <EditText
-                            android:layout_marginStart="12dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-
-                            android:backgroundTint="@color/black"
-                            android:id="@+id/edit_text_mother_other"
-                            />
-                    </LinearLayout>
-
-
-                </RadioGroup>
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

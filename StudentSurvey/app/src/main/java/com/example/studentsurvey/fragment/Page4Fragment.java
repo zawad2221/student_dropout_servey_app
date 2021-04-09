@@ -6,19 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import com.example.studentsurvey.MainViewModel;
 import com.example.studentsurvey.R;
 import com.example.studentsurvey.databinding.FragmentPage4Binding;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Collections;
 
 public class Page4Fragment extends Fragment {
     FragmentPage4Binding mFragmentPage4Binding;
@@ -48,9 +48,23 @@ public class Page4Fragment extends Fragment {
 //        MainViewModel.callNextButtonClickObserver4=false;}
         nextButtonClickObserver();
 
+        fatherEduChecked();
+        motherEduChecked();
+
         dueAmountKeyChange();
         dropReasonSelect();
         numOfDropSemesterKeyChange();
+    }
+
+    private void fatherEduChecked(){
+        mFragmentPage4Binding.radioGroupFatherEduStatus.setOnCheckedChangeListener((group, checkedId)->{
+            if(isFatherEduSelected()) changeVisibilityOfErrorView(mFragmentPage4Binding.fatherRadioErrorView,View.GONE);
+        });
+    }
+    private void motherEduChecked(){
+        mFragmentPage4Binding.radioGroupFatherEduStatus.setOnCheckedChangeListener((group, checkedId)->{
+            if(isFatherEduSelected()) changeVisibilityOfErrorView(mFragmentPage4Binding.fatherRadioErrorView,View.GONE);
+        });
     }
 
    private void numOfDropSemesterKeyChange(){
@@ -88,7 +102,15 @@ public class Page4Fragment extends Fragment {
 //        });
     }
     public boolean checkInputAndShowError(){
-        if(!isDropSemesterNumValid()){
+        if(!isFatherEduSelected()){
+            changeVisibilityOfErrorView(mFragmentPage4Binding.fatherRadioErrorView,View.VISIBLE);
+            return false;
+        }
+        else if(!isMotherEduSelected()){
+            changeVisibilityOfErrorView(mFragmentPage4Binding.motherRadioErrorView,View.VISIBLE);
+            return false;
+        }
+        else if(!isDropSemesterNumValid()){
             showErrorInTextInputLayout(mFragmentPage4Binding.numOfDropSemesterOutLineedTextFieldLayout,"Invalid Input");
             return false;
         }
@@ -107,6 +129,8 @@ public class Page4Fragment extends Fragment {
         }
     }
     private void saveDataInViewModel(){
+        mMainViewModel.studentDetails.setFather_education_status(getSelectedFatherEduStatus());
+        mMainViewModel.studentDetails.setMother_education_status(getSelectedMotherEduStatus());
         mMainViewModel.studentDetails.setAmount_of_drop_semester((int)Float.parseFloat(getDropSemesterNumber()));
         mMainViewModel.studentDetails.setDrop_reason(getReasonOfDrop());
         mMainViewModel.studentDetails.setDue_amount(getDueAmount());
@@ -136,11 +160,45 @@ public class Page4Fragment extends Fragment {
     private String getDueAmount(){
         return mFragmentPage4Binding.dueAmountEditText.getText().toString();
     }
+
+    private int getFatherEduSelectedId(){
+        return mFragmentPage4Binding.radioGroupFatherEduStatus.getCheckedRadioButtonId();
+    }
+    private boolean isFatherEduSelected(){
+        if(getFatherEduSelectedId()==-1){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    private int getMotherEduSelectedId(){
+        return mFragmentPage4Binding.radioGroupMotherEduStatus.getCheckedRadioButtonId();
+    }
+    private boolean isMotherEduSelected(){
+        if(getFatherEduSelectedId()==-1){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    private Integer getSelectedMotherEduStatus(){
+        return getMotherEduSelectedId()==R.id.radio_button_mother_graduation? 2:(
+                getMotherEduSelectedId()==R.id.radio_button_mother_hsc? 1:0
+        );
+    }
+    private Integer getSelectedFatherEduStatus(){
+        return getFatherEduSelectedId()==R.id.radio_button_father_graduation? 2:(
+                getFatherEduSelectedId()==R.id.radio_button_father_hsc? 1:0
+        );
+    }
     private boolean isDueAmountValid(){
         return !getDueAmount().isEmpty();
     }
 
     private void initDropReasonDropDown(){
+        Collections.sort(mMainViewModel.dropReasonArrayList);
         dropReasonAdapter = new ArrayAdapter<String>(this.getContext(), R.layout.drop_down_item,mMainViewModel.dropReasonArrayList);
         mFragmentPage4Binding.dropReasonDropDown.setAdapter(dropReasonAdapter);
 
@@ -167,5 +225,11 @@ public class Page4Fragment extends Fragment {
 //    }
     private void showErrorInTextInputLayout(TextInputLayout textInputLayout, String message){
         textInputLayout.setError(message);
+    }
+    private void changeVisibilityOfErrorView(LinearLayout linearLayout, int visibility){
+        linearLayout.setVisibility(visibility);
+        initViewModel();
+        //initNavController();
+        Log.d(getString(R.string.DEBUGING_TAG),"page 3 student info: "+mMainViewModel.studentDetails.getYear());
     }
 }

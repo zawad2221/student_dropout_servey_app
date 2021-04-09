@@ -114,6 +114,7 @@
     <string name="label_num_drop_semester">Number Of Drop Semester</string>
     <string name="label_due_amount">Due Tution Fee</string>
     <string name="survey_welcome_message">"Welcome to our system. This system's aim is to predict dropout chances and determine the performance of the students based on their given data. So please give your data and get your performance level and dropout chances."</string>
+    <string name="label_radio_button_graduation">Graduation</string>
     <string-array name="bd_districts">
         <item>Dhaka</item>
         <item>Faridpur</item>
@@ -180,4 +181,6 @@
         <item>Narail</item>
         <item>Satkhira</item>
     </string-array>
+    <string name="title_activity_about">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>

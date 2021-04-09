@@ -274,7 +274,7 @@ public class MainFragment extends Fragment {
     }
     private void showResultAlertDialog(String resultMessage){
         alertDialog = new AlertDialog.Builder(getContext())
-                .setTitle(resultMessage+": Try again.")
+                .setTitle(resultMessage+(resultMessage.equals("Failed")?": Try again.":""))
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     @Override

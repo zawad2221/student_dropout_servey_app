@@ -13,17 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentSurvey"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about"
+            android:theme="@style/Theme.StudentSurvey.NoActionBar"></activity>
         <activity android:name=".WelcomeActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

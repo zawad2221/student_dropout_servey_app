@@ -15,21 +15,51 @@
         android:text="Student Survey"
         android:textSize="25sp"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:fontFamily="casual"
+        android:textStyle="bold|italic"
+
         android:layout_marginLeft="11dp"
         android:layout_marginTop="11dp"
         />
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/aboutUs"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="About Us"
+        android:textSize="15sp"
+        android:textColor="@color/blue"
+        android:textStyle="bold|italic"
+        android:clickable="true"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="15dp"
+        />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/welcomeIcon"
         android:src="@drawable/diu_logo"
         app:layout_constraintTop_toTopOf="@id/appName"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="194dp"
+        android:layout_marginTop="134dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Department \nof \nSoftware Engineering"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appName"
+        app:layout_constraintBottom_toTopOf="@id/welcomeIcon"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/blue"
+        android:layout_marginTop="82dp"
         />
     <TextView
         android:layout_width="wrap_content"

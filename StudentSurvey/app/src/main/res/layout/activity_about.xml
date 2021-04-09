@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.Page1Fragment"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="9dp"
+
+        >
+        <ImageView
+            android:clickable="true"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/close"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="11dp"
+            />
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="@string/app_name"
+            android:textSize="31sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/blue"
+            android:layout_marginTop="9dp"
+            />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/appName"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:elevation="22dp"
+            app:cardCornerRadius="12dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginLeft="@dimen/about_card_margin_left_right"
+            android:layout_marginRight="@dimen/about_card_margin_left_right"
+            android:id="@+id/aboutMessageCard"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/appName"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="@string/survey_welcome_message"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:fontFamily="casual"
+                android:id="@+id/aboutMessage"
+                android:layout_margin="11dp"
+                />
+
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/aboutOurTeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/aboutMessageCard"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="Our Team"
+            android:textSize="31sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/blue"
+            android:layout_marginTop="22dp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/aboutOurTeam"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="22dp"
+            android:id="@+id/teamMember"
+            />
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

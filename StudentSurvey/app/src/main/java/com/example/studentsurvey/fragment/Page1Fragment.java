@@ -28,6 +28,7 @@ import com.example.studentsurvey.model.StudentDetails;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 
 public class Page1Fragment extends Fragment {
@@ -94,7 +95,7 @@ public class Page1Fragment extends Fragment {
         placeOfBirthDropDownOnClick();
         instituteNameDropDownOnClick();
         departmentNameDropDownOnClick();
-        yearRadioGroupOnClick();
+
 
     }
 
@@ -124,13 +125,8 @@ public class Page1Fragment extends Fragment {
             showErrorInTextInputLayout(mFragmentPage1Binding.departmentNameTextLayout,null);
             departmentName.getFilter().filter(null);
         });
-    }private void yearRadioGroupOnClick(){
-        mFragmentPage1Binding.radioGroupYear.setOnCheckedChangeListener( (radioGroup, isChecked) -> {
-            if(isYearSelected()){
-                changeYearErrorViewVisibility(View.GONE);
-            }
-        });
     }
+
 
     private void nextButtonClickObserver(){
 //        mMainViewModel.nextButtonClick.observe(this.requireActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
@@ -176,10 +172,7 @@ public class Page1Fragment extends Fragment {
             showErrorInTextInputLayout(mFragmentPage1Binding.departmentNameTextLayout,"Required Input");
             return false;
         }
-        else if(!isYearSelected()){
-            changeYearErrorViewVisibility(View.VISIBLE);
-            return false;
-        }
+
         else {
             mMainViewModel.studentDetails=getInfoFromView();
             //Log.d(getString(R.string.DEBUGING_TAG),"current in check frag by nav: "+mMainViewModel.currentFragment.getValue());
@@ -199,11 +192,7 @@ public class Page1Fragment extends Fragment {
         studentDetails.setPlace_of_birth(getPlaceOfBirth());
         studentDetails.setInstitute(getInstituteName());
         studentDetails.setDepartment(getDepartmentName());
-        studentDetails.setYear(getSelectedYearRadioId()==R.id.radio_button_first ? 1:(
-                getSelectedYearRadioId()==R.id.radio_button_second? 2:(
-                        getSelectedYearRadioId()==R.id.radio_button_third? 3:4
-                        )
-                ));
+
 
         return studentDetails;
     }
@@ -241,9 +230,7 @@ public class Page1Fragment extends Fragment {
     private void changeGenderErrorViewVisibility(int visibility){
         mFragmentPage1Binding.genderRadioErrorView.setVisibility(visibility);
     }
-    private void changeYearErrorViewVisibility(int visibility){
-        mFragmentPage1Binding.yearRadioErrorView.setVisibility(visibility);
-    }
+
     private String getNationality(){
         return mFragmentPage1Binding.nationalityDropDown.getText().toString();
     }
@@ -268,39 +255,35 @@ public class Page1Fragment extends Fragment {
     private boolean isDepartmentNameSelected(){
         return !(getDepartmentName().equals("Select"));
     }
-    private int getSelectedYearRadioId(){
-        return mFragmentPage1Binding.radioGroupYear.getCheckedRadioButtonId();
-    }
-    private boolean isYearSelected(){
-        if(getSelectedYearRadioId()==-1){
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+
+
 
 
 
     private void initNationality(){
+        Collections.sort(mMainViewModel.nationalityArrayList);
         nationalityAdapter = new ArrayAdapter<String>(this.getContext(), R.layout.drop_down_item,mMainViewModel.nationalityArrayList);
         mFragmentPage1Binding.nationalityDropDown.setAdapter(nationalityAdapter);
 
     }
     private void initDistrictDropDown(){
         String[] dis = getResources().getStringArray(R.array.bd_districts);
+        Arrays.sort(dis);
         mMainViewModel.districtArrayList = Arrays.asList(dis);
+
         districtAdapter = new ArrayAdapter<String>(this.getContext(), R.layout.drop_down_item,mMainViewModel.districtArrayList);
         mFragmentPage1Binding.placeOfBirthDropDown.setAdapter(districtAdapter);
 
     }
     private void initInstituteNameDropDown(){
+        Collections.sort(mMainViewModel.instituteNameArrayList);
         instituteName = new ArrayAdapter<String>(this.getContext(), R.layout.drop_down_item,mMainViewModel.instituteNameArrayList);
         mFragmentPage1Binding.instituteNameDropDown.setAdapter(instituteName);
         //mFragmentPage1Binding.instituteNameDropDown.setText(mMainViewModel.instituteNameArrayList.get(0));
 
     }
     private void initDepartmentDropDown(){
+        Collections.sort(mMainViewModel.departmentNameArrayList);
         departmentName = new ArrayAdapter<String>(this.getContext(), R.layout.drop_down_item,mMainViewModel.departmentNameArrayList);
         mFragmentPage1Binding.departmentNameDropDown.setAdapter(departmentName);
 

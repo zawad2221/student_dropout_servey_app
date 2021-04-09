@@ -27,7 +27,8 @@ import java.util.HashMap;
         "result_of_last_semester",
         "meet_with_advisor",
         "parent_satisfied",
-        "parent_education_status",
+        "father_education_status",
+        "mother_education_status",
         "amount_of_drop_semester",
         "drop_reason",
         "due_amount",
@@ -66,8 +67,12 @@ public class StudentDetails {
     private Integer meet_with_advisor;
     @JsonProperty("parent_satisfied")
     private Integer parent_satisfied;
-    @JsonProperty("parent_education_status")
-    private Integer parent_education_status;
+
+    @JsonProperty("father_education_status")
+    private Integer father_education_status;
+    @JsonProperty("mother_education_status")
+    private Integer mother_education_status;
+
     @JsonProperty("amount_of_drop_semester")
     private Integer amount_of_drop_semester;
     @JsonProperty("drop_reason")
@@ -229,14 +234,23 @@ public class StudentDetails {
         this.parent_satisfied = parent_satisfied;
     }
 
-    @JsonProperty("parent_education_status")
-    public Integer getParent_education_status() {
-        return parent_education_status;
+    @JsonProperty("father_education_status")
+    public Integer getFather_education_status() {
+        return father_education_status;
     }
 
-    @JsonProperty("parent_education_status")
-    public void setParent_education_status(Integer parent_education_status) {
-        this.parent_education_status = parent_education_status;
+    @JsonProperty("father_education_status")
+    public void setFather_education_status(Integer father_education_status) {
+        this.father_education_status = father_education_status;
+    }
+
+    @JsonProperty("mother_education_status")
+    public Integer getMother_education_status() {
+        return mother_education_status;
+    }
+    @JsonProperty("mother_education_status")
+    public void setMother_education_status(Integer mother_education_status) {
+        this.mother_education_status = mother_education_status;
     }
 
     @JsonProperty("amount_of_drop_semester")
@@ -292,6 +306,7 @@ public class StudentDetails {
     @Override
     public String toString() {
         return "StudentDetails{" +
+                "id=" + id +
                 ", gender=" + gender +
                 ", nationality='" + nationality + '\'' +
                 ", place_of_birth='" + place_of_birth + '\'' +
@@ -305,7 +320,8 @@ public class StudentDetails {
                 ", result_of_last_semester='" + result_of_last_semester + '\'' +
                 ", meet_with_advisor=" + meet_with_advisor +
                 ", parent_satisfied=" + parent_satisfied +
-                ", parent_education_status=" + parent_education_status +
+                ", father_education_status=" + father_education_status +
+                ", mother_education_status=" + mother_education_status +
                 ", amount_of_drop_semester=" + amount_of_drop_semester +
                 ", drop_reason='" + drop_reason + '\'' +
                 ", due_amount='" + due_amount + '\'' +

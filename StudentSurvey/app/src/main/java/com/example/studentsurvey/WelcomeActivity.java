@@ -36,20 +36,26 @@ public class WelcomeActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-        new Handler().postDelayed(new Runnable() {
+        activityWelcomeBinding.aboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                if(!isSkip){
-                    skipPage(intent);
-                    Log.d(getString(R.string.DEBUGING_TAG),"welcome runnable");
-                }
-
-
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomeActivity.this,AboutActivity.class));
             }
-        }, 6000);
+        });
+
+
+
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                if(!isSkip){
+//                    skipPage(intent);
+//                    Log.d(getString(R.string.DEBUGING_TAG),"welcome runnable");
+//                }
+//
+//
+//            }
+//        }, 6000);
     }
     private void skipPage(Intent intent){
         startActivity(intent);

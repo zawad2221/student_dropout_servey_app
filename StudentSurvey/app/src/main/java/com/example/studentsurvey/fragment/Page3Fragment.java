@@ -20,6 +20,7 @@ import androidx.navigation.Navigation;
 import com.example.studentsurvey.MainViewModel;
 import com.example.studentsurvey.R;
 import com.example.studentsurvey.databinding.FragmentPage3Binding;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class Page3Fragment extends Fragment {
     MainViewModel mMainViewModel;
@@ -48,8 +49,15 @@ public class Page3Fragment extends Fragment {
 //        MainViewModel.callNextButtonClickObserver3=true;}
         nextButtonClickObserver();
         Log.d(getString(R.string.DEBUGING_TAG),"onViewCreated page 3student info: "+mMainViewModel.studentDetails.getYear());
+
+        
+        
+        studyMaterialRadioOnClicked();
+        resultOnLastSemesterOnKeyChange();
+        advisedRadioClicked();
+        
         satisfactionChecked();
-        parentEduChecked();
+
 
     }
 
@@ -58,17 +66,29 @@ public class Page3Fragment extends Fragment {
         super.onAttach(context);
         Log.d(getString(R.string.DEBUGING_TAG),"on attach page2");
     }
+    private void studyMaterialRadioOnClicked(){
+        mFragmentPage3Binding.radioGroupUsedAdditionalMaterial.setOnCheckedChangeListener((group, checkedId)->{
+            if(isAdditionalResourceSelected())changeVisibilityOfErrorView(mFragmentPage3Binding.additionalMaterialRadioErrorView,View.GONE);
+        });
+    }
+    private void resultOnLastSemesterOnKeyChange(){
+        mFragmentPage3Binding.lastSemesterCGPAEditText.setOnKeyListener((v, keyCode, event)->{
+            showErrorInTextInputLayout(mFragmentPage3Binding.lastSemesterCGPAOutlinedTextFieldLayout,null);
+            return false;
+        });
+    }
+    private void advisedRadioClicked(){
+        mFragmentPage3Binding.radioGroupMeetWithAdvisor.setOnCheckedChangeListener((group, checkedId)->{
+            if(isMeetWithAdvisorSelected()) changeVisibilityOfErrorView(mFragmentPage3Binding.advisorRadioErrorView,View.GONE);
+        });
+    }
 
     private void satisfactionChecked(){
         mFragmentPage3Binding.radioGroupParentSatisfaction.setOnCheckedChangeListener((group, checkedId)->{
             if(isSatisfactionSelected()) changeVisibilityOfErrorView(mFragmentPage3Binding.satisfactionRadioErrorView,View.GONE);
         });
     }
-    private void parentEduChecked(){
-        mFragmentPage3Binding.radioGroupFatherEduStatus.setOnCheckedChangeListener((group, checkedId)->{
-            if(isParentEduSelected()) changeVisibilityOfErrorView(mFragmentPage3Binding.fatherRadioErrorView,View.GONE);
-        });
-    }
+
     private void nextButtonClickObserver(){
 //        mMainViewModel.nextButtonClick.observe(this.requireActivity(), new Observer<MainViewModel.FRAGMENT_TAGS>() {
 //            @Override
@@ -86,14 +106,24 @@ public class Page3Fragment extends Fragment {
     }
 
     public boolean checkInputAndShowError(){
-        if(!isSatisfactionSelected()){
+        
+        if(!isAdditionalResourceSelected()){
+            changeVisibilityOfErrorView(mFragmentPage3Binding.additionalMaterialRadioErrorView,View.VISIBLE);
+            return false;
+        }
+        else if(!isCgpaValid()){
+            showErrorInTextInputLayout(mFragmentPage3Binding.lastSemesterCGPAOutlinedTextFieldLayout,"Invalid Input");
+            return false;
+        }
+        else if(!isMeetWithAdvisorSelected()){
+            changeVisibilityOfErrorView(mFragmentPage3Binding.advisorRadioErrorView,View.VISIBLE);
+            return false;
+        }
+        else if(!isSatisfactionSelected()){
             changeVisibilityOfErrorView(mFragmentPage3Binding.satisfactionRadioErrorView,View.VISIBLE);
             return false;
         }
-        else if(!isParentEduSelected()){
-            changeVisibilityOfErrorView(mFragmentPage3Binding.fatherRadioErrorView,View.VISIBLE);
-            return false;
-        }
+
         else {
             saveDataInViewModel();
             //showFragment(R.id.action_page3Fragment_to_page4Fragment);
@@ -104,8 +134,65 @@ public class Page3Fragment extends Fragment {
     }
 
     private void saveDataInViewModel(){
+        mMainViewModel.studentDetails.setUse_additional_course_material(getAdditionalResourceSelectedId()==R.id.radio_button_used_additional_yes?1:0);
+        mMainViewModel.studentDetails.setMeet_with_advisor(getMeetWithAdvisorId()==R.id.radio_button_meet_advisor_yes?1:0);
+        mMainViewModel.studentDetails.setResult_of_last_semester(getResultOfLastSemester());
         mMainViewModel.studentDetails.setParent_satisfied(getParentSatisfactionSelectedId()==R.id.radio_button_parent_satisfaction_yes?1:0);
-        mMainViewModel.studentDetails.setParent_education_status(getSelectedParentEduStatus());
+
+    }
+    private int getAdditionalResourceSelectedId(){
+        return mFragmentPage3Binding.radioGroupUsedAdditionalMaterial.getCheckedRadioButtonId();
+    }
+    private boolean isAdditionalResourceSelected(){
+        if(getAdditionalResourceSelectedId()==-1){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    private String getResultOfLastSemester(){
+        return mFragmentPage3Binding.lastSemesterCGPAEditText.getText().toString();
+    }
+    private boolean isCgpaValid(){
+        if(getResultOfLastSemester().isEmpty()){
+            Log.d(getString(R.string.DEBUGING_TAG),"if 1 ");
+            return false;
+        }
+        else if(getResultOfLastSemester().length()>1){
+            Log.d(getString(R.string.DEBUGING_TAG),"if 2 ");
+            try{
+                Log.d(getString(R.string.DEBUGING_TAG),"if 3 ");
+                String[] c = getResultOfLastSemester().split(".");
+                if(c[0].length()==1&&Integer.parseInt(c[0])<4){
+                    Log.d(getString(R.string.DEBUGING_TAG),"if 4 ");
+                    return true;
+                }
+            }
+            catch (Exception e){
+                Log.d(getString(R.string.DEBUGING_TAG),"splite excep: "+e.getMessage());
+                return false;
+            }
+        }
+        else if(getResultOfLastSemester().length()==1 && Integer.parseInt(getResultOfLastSemester())>4){
+            Log.d(getString(R.string.DEBUGING_TAG),"if 5 ");
+            return false;
+        }
+
+
+
+        return true;
+    }
+    private int getMeetWithAdvisorId(){
+        return mFragmentPage3Binding.radioGroupMeetWithAdvisor.getCheckedRadioButtonId();
+    }
+    private boolean isMeetWithAdvisorSelected(){
+        if(getMeetWithAdvisorId()==-1){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     private int getParentSatisfactionSelectedId(){
@@ -119,26 +206,9 @@ public class Page3Fragment extends Fragment {
             return true;
         }
     }
-    private int getParentEduSelectedId(){
-        return mFragmentPage3Binding.radioGroupFatherEduStatus.getCheckedRadioButtonId();
-    }
-    private boolean isParentEduSelected(){
-        if(getParentEduSelectedId()==-1){
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    private Integer getSelectedParentEduStatus(){
-        return getParentSatisfactionSelectedId()==R.id.radio_button_father_hsc_or_above? 4:(
-                getParentSatisfactionSelectedId()==R.id.radio_button_father_hsc? 3: (
-                        getParentSatisfactionSelectedId()==R.id.radio_button_father_ssc?2:(
-                                getParentSatisfactionSelectedId()==R.id.radio_button_father_jsc?1:0
-                                )
-                        )
-                );
-    }
+
+
+
 
     private void changeVisibilityOfErrorView(LinearLayout linearLayout, int visibility){
         linearLayout.setVisibility(visibility);
@@ -166,6 +236,9 @@ public class Page3Fragment extends Fragment {
     private void initViewModel(){
         mMainViewModel = new ViewModelProvider(getActivity())
                 .get(MainViewModel.class);
+    }
+    private void showErrorInTextInputLayout(TextInputLayout textInputLayout, String message){
+        textInputLayout.setError(message);
     }
 
 
