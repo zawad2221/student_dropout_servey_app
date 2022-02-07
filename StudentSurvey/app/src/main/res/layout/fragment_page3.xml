@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="9dp"
-        android:background="@color/cardview_background"
+        android:background="@drawable/page_background"
         >
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Do you use additional course material for study? *"
+                    android:text="@string/do_u_use_additional_material"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -104,7 +104,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Result of the Last Semester (SGPA) *"
+                    android:text="@string/result_of_last_semester"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -146,7 +146,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Did you meet with your advisor regularly? *"
+                    android:text="@string/meet_with_advisor"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -217,7 +217,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Are your parents satisfied with your result?*"
+                    android:text="@string/r_parents_satisfy"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"

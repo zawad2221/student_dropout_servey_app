@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="9dp"
-        android:background="@color/cardview_background"
+        android:background="@drawable/page_background"
         >
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Parent's highest Education Degree?*"
+                    android:text="@string/parents_edu_status"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -59,6 +59,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="@string/label_radio_button_jsc"/>
+                    <RadioButton
+                        android:id="@+id/radio_button_bellow_jsc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/bellow_jsc"/>
 
                     <LinearLayout
                         android:visibility="gone"
@@ -111,6 +116,7 @@
 
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/fatherEduStatusCard"
@@ -209,7 +215,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="How many semesters did you drop? *"
+                    android:text="@string/semester_u_drop"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -250,7 +256,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="If you have dropped any semester than what is the reason behind it?"
+                    android:text="@string/reason_behind_it"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -293,7 +299,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Due Amount of Tuition Fee (BDT)  *"
+                    android:text="@string/due_amount"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="9dp"
-        android:background="@color/cardview_background"
+        android:background="@drawable/page_background"
         >
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Year (On going/Current)*"
+                    android:text="@string/yer_on_going"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -113,7 +113,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="How much time (hour) spend for group study? (Monthly Basis) *"
+                    android:text="@string/grp_study_time"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -156,7 +156,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="How much days (hour) you were absent in semester?(On average) *"
+                    android:text="@string/absent_time"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -198,7 +198,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Do you ask questions in the class frequently? *"
+                    android:text="@string/do_u_asked_question"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"

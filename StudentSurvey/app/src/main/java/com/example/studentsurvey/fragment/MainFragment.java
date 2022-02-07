@@ -88,7 +88,9 @@ public class MainFragment extends Fragment {
                 dismissProgressDialog();
                 if(studentDetails.getResult()!=-1){
 
-                    showResultAlertDialog("Result: "+(studentDetails.getResult()==1?"Yes":"No"));
+                    showResultAlertDialog("Result: "+(studentDetails.getResult()==0?"Your chance of performing good is Low":
+                            (studentDetails.getResult()==1?"Your chance of performing good is Medium":
+                                    "Your chance of performing good is High")));
 
                 }
                 else {
@@ -170,17 +172,22 @@ public class MainFragment extends Fragment {
                         setButtonVisibility(mFragmentMainBinding.previousButton,View.VISIBLE);
                         if(page2Fragment==null)page2Fragment = new Page2Fragment();
                         showFragment(page2Fragment);
+                        mFragmentMainBinding.pageNumber.setVisibility(View.VISIBLE);
+                        mFragmentMainBinding.pageNumber.setText("2/4");
                     }
                 }
                 else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT2){
 //                    setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS.FRAGMENT3);
 //                    showFragment(R.id.action_page2Fragment_to_page3Fragment);
 
+
                     mMainViewModel.nextButtonClick.setValue(MainViewModel.FRAGMENT_TAGS.FRAGMENT2);
                     boolean check = page2Fragment.checkInputAndShowError();
                     if (check){
                         if(page3Fragment==null)page3Fragment = new Page3Fragment();
                         showFragment(page3Fragment);
+                        mFragmentMainBinding.pageNumber.setVisibility(View.VISIBLE);
+                        mFragmentMainBinding.pageNumber.setText("3/4");
                     }
                 }
                 else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT3){
@@ -194,6 +201,7 @@ public class MainFragment extends Fragment {
                         setButtonVisibility(mFragmentMainBinding.submitButton,View.VISIBLE);
                         if(page4Fragment==null)page4Fragment = new Page4Fragment();
                         showFragment(page4Fragment);
+                        mFragmentMainBinding.pageNumber.setVisibility(View.GONE);
                     }
                 }
 
@@ -317,12 +325,16 @@ public class MainFragment extends Fragment {
             setButtonVisibility(mFragmentMainBinding.previousButton,View.GONE);
             //navController.popBackStack(R.id.page1Fragment,false);
             showFragment(page1Fragment);
+            mFragmentMainBinding.pageNumber.setVisibility(View.VISIBLE);
+            mFragmentMainBinding.pageNumber.setText("1/4");
 
         }
         else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT3){
             setCurrentSelectedFragment(MainViewModel.FRAGMENT_TAGS.FRAGMENT2);
             //navController.popBackStack(R.id.page2Fragment,false);
             showFragment(page2Fragment);
+            mFragmentMainBinding.pageNumber.setVisibility(View.VISIBLE);
+            mFragmentMainBinding.pageNumber.setText("2/4");
 
         }
         else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT4||
@@ -332,6 +344,8 @@ public class MainFragment extends Fragment {
             setButtonVisibility(mFragmentMainBinding.nextButton,View.VISIBLE);
             //navController.popBackStack(R.id.page3Fragment,false);
             showFragment(page3Fragment);
+            mFragmentMainBinding.pageNumber.setVisibility(View.VISIBLE);
+            mFragmentMainBinding.pageNumber.setText("3/4");
         }
         else if(mMainViewModel.currentFragment.getValue()== MainViewModel.FRAGMENT_TAGS.FRAGMENT1){
             getActivity().finish();

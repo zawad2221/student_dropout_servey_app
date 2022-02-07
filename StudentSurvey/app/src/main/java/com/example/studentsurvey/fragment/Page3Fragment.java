@@ -163,10 +163,13 @@ public class Page3Fragment extends Fragment {
             Log.d(getString(R.string.DEBUGING_TAG),"if 2 ");
             try{
                 Log.d(getString(R.string.DEBUGING_TAG),"if 3 ");
-                String[] c = getResultOfLastSemester().split(".");
+                String[] c = getResultOfLastSemester().split("\\.");
                 if(c[0].length()==1&&Integer.parseInt(c[0])<4){
                     Log.d(getString(R.string.DEBUGING_TAG),"if 4 ");
                     return true;
+                }
+                else {
+                    return false;
                 }
             }
             catch (Exception e){

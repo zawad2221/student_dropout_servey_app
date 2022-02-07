@@ -129,8 +129,7 @@ public class Page4Fragment extends Fragment {
         }
     }
     private void saveDataInViewModel(){
-        mMainViewModel.studentDetails.setFather_education_status(getSelectedFatherEduStatus());
-        mMainViewModel.studentDetails.setMother_education_status(getSelectedMotherEduStatus());
+        mMainViewModel.studentDetails.setParent_education_status(getSelectedFatherEduStatus());
         mMainViewModel.studentDetails.setAmount_of_drop_semester((int)Float.parseFloat(getDropSemesterNumber()));
         mMainViewModel.studentDetails.setDrop_reason(getReasonOfDrop());
         mMainViewModel.studentDetails.setDue_amount(getDueAmount());
@@ -189,8 +188,10 @@ public class Page4Fragment extends Fragment {
         );
     }
     private Integer getSelectedFatherEduStatus(){
-        return getFatherEduSelectedId()==R.id.radio_button_father_graduation? 2:(
-                getFatherEduSelectedId()==R.id.radio_button_father_hsc? 1:0
+        return getFatherEduSelectedId()==R.id.radio_button_father_graduation? 3:(
+                getFatherEduSelectedId()==R.id.radio_button_father_hsc? 2: (
+                        getFatherEduSelectedId()==R.id.radio_button_bellow_jsc? 1: 0
+                        )
         );
     }
     private boolean isDueAmountValid(){

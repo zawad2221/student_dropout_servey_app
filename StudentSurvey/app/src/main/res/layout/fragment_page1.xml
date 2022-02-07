@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="9dp"
-        android:background="@color/cardview_background"
+        android:background="@drawable/page_background"
         >
 
         <androidx.cardview.widget.CardView
@@ -34,7 +34,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gender*"
+                    android:text="@string/gender"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -105,7 +105,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nationality*"
+                    android:text="@string/nationality"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -148,7 +148,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Place Of Birth(District)*"
+                    android:text="@string/placeofbirth"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -191,7 +191,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Institute Name*"
+                    android:text="@string/institute_name"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"
@@ -233,7 +233,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Department Name*"
+                    android:text="@string/dept_name"
                     android:textSize="@dimen/question_text_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/question_text_bottom_margin"

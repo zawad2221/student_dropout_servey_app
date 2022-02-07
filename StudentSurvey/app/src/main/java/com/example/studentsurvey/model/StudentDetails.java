@@ -27,8 +27,7 @@ import java.util.HashMap;
         "result_of_last_semester",
         "meet_with_advisor",
         "parent_satisfied",
-        "father_education_status",
-        "mother_education_status",
+        "parent_education_status",
         "amount_of_drop_semester",
         "drop_reason",
         "due_amount",
@@ -68,10 +67,8 @@ public class StudentDetails {
     @JsonProperty("parent_satisfied")
     private Integer parent_satisfied;
 
-    @JsonProperty("father_education_status")
-    private Integer father_education_status;
-    @JsonProperty("mother_education_status")
-    private Integer mother_education_status;
+    @JsonProperty("parent_education_status")
+    private Integer parent_education_status;
 
     @JsonProperty("amount_of_drop_semester")
     private Integer amount_of_drop_semester;
@@ -81,8 +78,6 @@ public class StudentDetails {
     private String due_amount;
     @JsonProperty("result")
     private Integer result;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("id")
     public Integer getId() {
@@ -235,23 +230,16 @@ public class StudentDetails {
     }
 
     @JsonProperty("father_education_status")
-    public Integer getFather_education_status() {
-        return father_education_status;
+    public Integer getParent_education_status() {
+        return parent_education_status;
     }
 
     @JsonProperty("father_education_status")
-    public void setFather_education_status(Integer father_education_status) {
-        this.father_education_status = father_education_status;
+    public void setParent_education_status(Integer parent_education_status) {
+        this.parent_education_status = parent_education_status;
     }
 
-    @JsonProperty("mother_education_status")
-    public Integer getMother_education_status() {
-        return mother_education_status;
-    }
-    @JsonProperty("mother_education_status")
-    public void setMother_education_status(Integer mother_education_status) {
-        this.mother_education_status = mother_education_status;
-    }
+
 
     @JsonProperty("amount_of_drop_semester")
     public Integer getAmount_of_drop_semester() {
@@ -293,15 +281,6 @@ public class StudentDetails {
         this.result = result;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
 
     @Override
     public String toString() {
@@ -320,8 +299,7 @@ public class StudentDetails {
                 ", result_of_last_semester='" + result_of_last_semester + '\'' +
                 ", meet_with_advisor=" + meet_with_advisor +
                 ", parent_satisfied=" + parent_satisfied +
-                ", father_education_status=" + father_education_status +
-                ", mother_education_status=" + mother_education_status +
+                ", father_education_status=" + parent_education_status +
                 ", amount_of_drop_semester=" + amount_of_drop_semester +
                 ", drop_reason='" + drop_reason + '\'' +
                 ", due_amount='" + due_amount + '\'' +

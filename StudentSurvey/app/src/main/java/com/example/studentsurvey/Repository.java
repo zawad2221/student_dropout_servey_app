@@ -44,6 +44,11 @@ public class Repository {
                     result.setValue(response.body());
                     Log.d(context.getString(R.string.DEBUGING_TAG),"success result");
                 }
+                else {
+                    StudentDetails studentDetail = new StudentDetails();
+                    studentDetail.setResult(-1);
+                    result.setValue(studentDetail);
+                }
             }
 
             @Override

@@ -183,4 +183,22 @@
     </string-array>
     <string name="title_activity_about">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="gender">Gender<font color='#B50303'> *</font></string>
+    <string name="nationality">Nationality<font color='#B50303'> *</font></string>
+    <string name="placeofbirth">Place Of Birth(District)<font color='#B50303'> *</font></string>
+    <string name="institute_name">Institute Name<font color='#B50303'> *</font></string>
+    <string name="dept_name">Department Name<font color='#B50303'> *</font></string>
+    <string name="yer_on_going">Year (On going/Current)<font color='#B50303'> *</font></string>
+    <string name="grp_study_time">How much time (hour) spend for group study? (Monthly Basis) <font color='#B50303'> *</font></string>
+    <string name="absent_time">How much days (hour) you were absent in semester?(On average) <font color='#B50303'> *</font></string>
+    <string name="do_u_asked_question">Do you ask questions in the class frequently? <font color='#B50303'> *</font></string>
+    <string name="do_u_use_additional_material">Do you use additional course material for study? <font color='#B50303'> *</font></string>
+    <string name="result_of_last_semester">Result of the Last Semester (SGPA) <font color='#B50303'> *</font></string>
+    <string name="meet_with_advisor">Did you meet with your advisor regularly? <font color='#B50303'> *</font></string>
+    <string name="r_parents_satisfy">Are your parents satisfied with your result?<font color='#B50303'> *</font></string>
+    <string name="parents_edu_status">Your Parent\'s highest Education Degree?<font color='#B50303'> *</font></string>
+    <string name="semester_u_drop">How many semesters did you drop? <font color='#B50303'> *</font></string>
+    <string name="reason_behind_it">If you have dropped any semester than what is the reason behind it?</string>
+    <string name="due_amount">Due Amount of Tuition Fee<font color='#B50303'> *</font></string>
+    <string name="bellow_jsc">Bellow Jsc</string>
 </resources>
